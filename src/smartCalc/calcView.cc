@@ -12,4 +12,3 @@ CalcView::~CalcView()
 {
     delete ui;
 }
-
