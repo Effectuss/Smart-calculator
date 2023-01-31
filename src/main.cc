@@ -1,4 +1,4 @@
-#include "calcView.h"
+#include "./view/calcView.h"
 
 #include <QApplication>
 

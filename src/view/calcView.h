@@ -2,6 +2,11 @@
 #define SMARTCALC_H
 
 #include <QMainWindow>
+#include <QWidget>
+#include <QDebug>
+#include <QDialog>
+#include <QLabel>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CalcView; }

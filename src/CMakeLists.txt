@@ -16,13 +16,13 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cc
-        calcView.cc
-        calcView.h
-        calcView.ui
-        calcController.cc
-        calcModel.cc
-        calcController.h
-        calcModel.h
+        ./view/calcView.cc
+        ./view/calcView.h
+        ./view/calcView.ui
+        ./controller/calcController.cc
+        ./model/calcModel.cc
+        ./controller/calcController.h
+        ./model/calcModel.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
