@@ -22,11 +22,21 @@ class CalcView : public QMainWindow {
  public:
   CalcView(QWidget *parent = nullptr);
   void SetController(CalcController *controller);
+  void CheckAndChangeStyle();
+  void AddFunctionOrNot(QPushButton *button, bool is_func);
   ~CalcView();
+
+ public slots:
+  void AddNotFunction();
+  void AddFunction();
+  void ClearInputPanel();
+  void DeleteOneSymb();
+  void StartCalculacte();
 
  private:
   Ui::CalcView *ui;
   s21::CalcController *controller_;
+  QString input_label_;
 };
 }  // namespace s21
 
