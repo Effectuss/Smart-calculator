@@ -1,26 +1,33 @@
-#ifndef SMARTCALC_H
-#define SMARTCALC_H
+#ifndef __CALCVIEW_H__
+#define __CALCVIEW_H__
 
-#include <QMainWindow>
-#include <QWidget>
 #include <QDebug>
 #include <QDialog>
 #include <QLabel>
+#include <QMainWindow>
+#include <QWidget>
 
+#include "../controller/calcController.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class CalcView; }
+namespace Ui {
+class CalcView;
+}
 QT_END_NAMESPACE
 
-class CalcView : public QMainWindow
-{
-    Q_OBJECT
+namespace s21 {
+class CalcView : public QMainWindow {
+  Q_OBJECT
 
-public:
-    CalcView(QWidget *parent = nullptr);
-    ~CalcView();
+ public:
+  CalcView(QWidget *parent = nullptr);
+  void SetController(CalcController *controller);
+  ~CalcView();
 
-private:
-    Ui::CalcView *ui;
+ private:
+  Ui::CalcView *ui;
+  s21::CalcController *controller_;
 };
-#endif // SMARTCALC_H
+}  // namespace s21
+
+#endif  // __CALCVIEW_H__

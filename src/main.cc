@@ -1,11 +1,13 @@
-#include "./view/calcView.h"
-
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    CalcView w;
-    w.show();
-    return a.exec();
+#include "./view/calcView.h"
+
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+  s21::CalcModel model;
+  s21::CalcController controller(&model);
+  s21::CalcView w;
+  w.SetController(&controller);
+  w.show();
+  return a.exec();
 }

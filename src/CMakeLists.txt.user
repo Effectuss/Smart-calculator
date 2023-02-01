@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.0, 2023-01-30T16:41:08. -->
+<!-- Written by QtCreator 7.0.0, 2023-02-01T11:49:58. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -304,15 +304,15 @@
      <value type="QString">DYLD_FRAMEWORK_PATH</value>
      <value type="QString">DYLD_LIBRARY_PATH</value>
     </valuelist>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">smartCalc</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.smartCalc</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">smartCalc</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">calcView</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.calcView</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">calcView</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build/smartCalc.app/Contents/MacOS</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build/calcView.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
