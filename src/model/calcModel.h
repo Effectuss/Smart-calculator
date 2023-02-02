@@ -1,13 +1,20 @@
 #ifndef __CALCMODEL_H__
 #define __CALCMODEL_H__
 
+#include <cmath>
+#include <iostream>
 #include <string>
 
 namespace s21 {
+
+typedef struct Token {
+  
+} Token;
+
 class CalcModel {
  public:
   CalcModel() {}
-  std::string& GetInputStr();
+  std::string GetInputStr() const;
   void SetInputStr(std::string& input_str);
 
  private:
