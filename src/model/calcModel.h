@@ -7,8 +7,8 @@ namespace s21 {
 class CalcModel {
  public:
   CalcModel() {}
-  std::string GetInputStr();
-  void SetInputStr(std::string input_str);
+  std::string& GetInputStr();
+  void SetInputStr(std::string& input_str);
 
  private:
   std::string input_str_;
