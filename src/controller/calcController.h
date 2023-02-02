@@ -1,13 +1,15 @@
 #ifndef __CALCCONTROLLER_H__
 #define __CALCCONTROLLER_H__
 
+#include <iostream>
+
 #include "../model/calcModel.h"
 
 namespace s21 {
 class CalcController {
  public:
   CalcController(CalcModel *model) : model_{model} {};
-  std::string Calculate(std::string &str_from_label);
+  std::string &Calculate(std::string &str_from_label);
 
  private:
   CalcModel *model_;
