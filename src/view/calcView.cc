@@ -61,13 +61,16 @@ void CalcView::SetController(CalcController *controller) {
   this->controller_ = controller;
 }
 
-void CalcView::CheckAndChangeStyle() {
+void CalcView::CheckAndChangeStyleLabel() {
   if (this->input_label_.length() == 60) {
     ui->inputPanel->setStyleSheet(
         "font: 14pt; border: 1 solid #b8b8b8; background-color: #fff;");
   } else if (this->input_label_.length() == 80) {
     ui->inputPanel->setStyleSheet(
         "font: 11pt; border: 1 solid #b8b8b8; background-color: #fff;");
+  } else if (this->input_label_.length() == 100) {
+    ui->inputPanel->setStyleSheet(
+        "font: 9pt; border: 1 solid #b8b8b8; background-color: #fff;");
   }
 }
 
@@ -77,7 +80,7 @@ void CalcView::AddFunctionOrNot(QPushButton *button, bool is_func) {
   } else {
     this->input_label_ += button->text() + '(';
   }
-  this->CheckAndChangeStyle();
+  this->CheckAndChangeStyleLabel();
   ui->inputPanel->setText(this->input_label_);
 }
 
@@ -108,6 +111,7 @@ void CalcView::StartCalculacte() {
   input_str = this->controller_->Calculate(input_str);
   this->input_label_ = this->input_label_.fromStdString(input_str);
   ui->inputPanel->setText(this->input_label_);
+  this->input_label_.resize(0);
 }
 
 CalcView::~CalcView() { delete ui; }
