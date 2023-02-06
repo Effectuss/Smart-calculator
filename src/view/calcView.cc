@@ -108,7 +108,10 @@ void CalcView::DeleteOneSymb() {
 
 void CalcView::StartCalculacte() {
   std::string input_str = input_label_.toUtf8().constData();
-  input_str = this->controller_->Calculate(input_str);
+  if (this->input_label_.indexOf("x") >= 0) {
+    this->value_x_ = ui->xValue->value();
+  }
+  input_str = this->controller_->Calculate(input_str, this->value_x_);
   this->input_label_ = this->input_label_.fromStdString(input_str);
   ui->inputPanel->setText(this->input_label_);
   this->input_label_.resize(0);

@@ -4,21 +4,22 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <vector>
+
+#include "token.h"
 
 namespace s21 {
-
-typedef struct Token {
-  
-} Token;
 
 class CalcModel {
  public:
   CalcModel() {}
   std::string GetInputStr() const;
   void SetInputStr(std::string& input_str);
+  std::string& ShuntingYard(std::string& intput_str, double& x);
 
  private:
-  std::string input_str_;
+  std::string output_result_;
+  std::vector<Token> v_tokens_;
 };
 }  // namespace s21
 
