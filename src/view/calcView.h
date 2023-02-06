@@ -37,6 +37,7 @@ class CalcView : public QMainWindow {
   Ui::CalcView *ui;
   s21::CalcController *controller_;
   QString input_label_;
+  double value_x_;
 };
 }  // namespace s21
 

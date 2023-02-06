@@ -110,7 +110,7 @@ color: rgb(0, 0, 0);
       </widget>
      </item>
      <item row="4" column="6">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox">
+      <widget class="QDoubleSpinBox" name="xValue">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
