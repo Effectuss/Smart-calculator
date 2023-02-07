@@ -4,28 +4,27 @@
 #include <map>
 #include <string>
 
-// left or right
-// if rignt then binary
+namespace s21 {
 class Token {
  public:
   enum class TypeTokens {
     NUMBER = 1,
     BINARY_OPERATOR,
     UNARY_OPERATOR,
+    OPEN_PARENTHESIS,
+    CLOSE_PARENTHESIS,
     FUNCTION
   };
-  Token();
-  Token(const short& type, const std::string& token, short priority);
-  short GetPriority();
+
+  Token(const TypeTokens& type, const std::string& token, short priority = -1);
+  short GetPriority() const { return priority_; }
+  std::string GetTokenString() const { return type_and_token_.second; }
   void FillPriority(const short& priority);
-  bool IsFunction();
-  bool IsNumber();
-  bool IsBinaryOperator();
-  bool IsUnaryOperator();
 
  private:
-  std::map<short, std::string> type_and_token_;
+  std::pair<TypeTokens, std::string> type_and_token_;
   short priority_;
 };
+}  // namespace s21
 
 #endif  // __TOKEN_H__
