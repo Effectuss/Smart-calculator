@@ -1,9 +1,13 @@
 #include "calcController.h"
 
 namespace s21 {
-std::string CalcController::Calculate(std::string& str_from_label, double &x) {
+std::string CalcController::Calculate(std::string& str_from_label, double& x) {
   std::string test_ = "Incorect input";
-    model_->ShuntingYard(str_from_label, x);
+  try {
+    model_->ToTokens(str_from_label, x);
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << '\n';
+  }
   return model_->GetInputStr();
 }
 
