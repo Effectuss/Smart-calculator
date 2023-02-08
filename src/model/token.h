@@ -15,6 +15,7 @@ class Token {
     FUNCTION
   };
 
+  Token() {}
   Token(const TypeTokens& type, const std::string& token, short priority = -1)
       : priority_{priority} {
     type_and_token_.first = type;
@@ -22,6 +23,7 @@ class Token {
   }
   short GetPriority() const { return priority_; }
   std::string GetTokenString() const { return type_and_token_.second; }
+  TypeTokens GetType() { return type_and_token_.first; };
   static bool IsFunction(const char& symb) {
     if (symb >= 'a' && symb <= 'z' && symb != 'm') return false;
     return true;
