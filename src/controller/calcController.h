@@ -7,7 +7,7 @@ namespace s21 {
 class CalcController {
  public:
   CalcController(CalcModel *model) : model_{model} {};
-  std::string Calculate(std::string &str_from_label, double&x);
+  double CalculateMath(std::string &str_from_label, double &x);
 
  private:
   CalcModel *model_;
@@ -15,4 +15,3 @@ class CalcController {
 }  // namespace s21
 
 #endif  // __CALCCONTROLLER_H__
- 

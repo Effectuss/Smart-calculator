@@ -24,6 +24,10 @@ set(PROJECT_SOURCES
         ./controller/calcController.h
         ./model/calcModel.h
         ./model/token.h
+        ./model/tokenizator.cc
+        ./model/tokenizator.h
+        ./model/validator.h
+        ./model/validator.cc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
