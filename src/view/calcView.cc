@@ -111,10 +111,15 @@ void CalcView::StartCalculacte() {
   if (this->input_label_.indexOf("x") >= 0) {
     this->value_x_ = ui->xValue->value();
   }
-  input_str = this->controller_->Calculate(input_str, this->value_x_);
-  this->input_label_ = this->input_label_.fromStdString(input_str);
-  ui->inputPanel->setText(this->input_label_);
-  this->input_label_.resize(0);
+  try {
+    double result = this->controller_->CalculateMath(input_str, this->value_x_);
+    input_str = std::to_string(result);
+    this->input_label_ = this->input_label_.fromStdString(input_str);
+    ui->inputPanel->setText(this->input_label_);
+    this->input_label_.resize(0);
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
 }
 
 CalcView::~CalcView() { delete ui; }
