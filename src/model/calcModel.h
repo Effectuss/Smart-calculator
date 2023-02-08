@@ -13,19 +13,22 @@ namespace s21 {
 
 class CalcModel {
  public:
-  CalcModel() {}
-  std::string GetInputStr() const;
-  void SetInputStr(std::string& input_str);
-  bool IsFunction();
+
   void ToTokens(std::string& expression, double& x);
+  bool TokenizationNumber();
+  bool TokenizationX();
+  bool TokenizationOperator();
+  bool TokenizationFunction();
+  bool TokenizationOpenParen();
+  bool TokenizationCloseParen();
+
 
   void Validation();
   std::string& ComputeExpressin(std::string& intput_str, double& x);
 
-  // tmp method
   void PrintTokens() {
     auto count = 1;
-    for (auto el : this->v_tokens_) {
+    for (auto el : this->l_tokens_) {
       std::cout << count << ". TOKEN: " << el.GetTokenString()
                 << ", PRIORITY: " << el.GetPriority() << std::endl;
     }
@@ -33,7 +36,9 @@ class CalcModel {
 
  private:
   std::string output_result_;
-  std::list<Token> v_tokens_;
+  std::list<Token> l_tokens_;
+  std::vector<std::string> function_ = {"sin",  "cos",  "tan",  "log", "ln",
+                                        "acos", "asin", "atan", "sqrt"};
 };
 }  // namespace s21
 
