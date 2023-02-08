@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         ./model/calcModel.cc
         ./controller/calcController.h
         ./model/calcModel.h
+        ./model/token.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

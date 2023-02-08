@@ -27,8 +27,7 @@ class CalcModel {
     auto count = 1;
     for (auto el : this->v_tokens_) {
       std::cout << count << ". TOKEN: " << el.GetTokenString()
-                << ", PRIORITY: " << el.GetPriority()
-                << std::endl;
+                << ", PRIORITY: " << el.GetPriority() << std::endl;
     }
   }
 
