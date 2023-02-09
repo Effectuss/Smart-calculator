@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         ./controller/calcController.h
         ./model/calcModel.h
         ./model/token.h
+        ./model/token.cc
         ./model/tokenizator.cc
         ./model/tokenizator.h
         ./model/validator.h

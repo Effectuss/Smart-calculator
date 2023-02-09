@@ -19,6 +19,12 @@ class Tokenizator {
 
   static bool IsCorrectFunction(const std::string& expression,
                                 const std::vector<std::string>& function);
+  static bool IsCorrectNumber(const std::string& number);
+
+  static bool IsFunction(const char& symb);
+  static bool IsOperator(const char& symb);
+
+  std::list<Token>& GetListToken();
 
   void PrintTokens() {
     auto count = 1;

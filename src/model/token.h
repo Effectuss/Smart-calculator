@@ -16,34 +16,23 @@ class Token {
     FUNCTION
   };
 
-  Token(const TypeTokens& type, const std::string& token, short priority = -1)
-      : priority_{priority} {
-    type_and_token_.first = type;
-    type_and_token_.second = token;
-  }
+  Token(const TypeTokens& type, const std::string& token,
+        const short& priority = -1);
 
-  short GetPriority() const { return priority_; }
+  short GetPriority() const;
+  std::string GetTokenString() const;
+  TypeTokens GetType() const;
 
-  std::string GetTokenString() const { return type_and_token_.second; }
-
-  TypeTokens GetType() { return type_and_token_.first; };
-  static bool IsFunction(const char& symb) {
-    if (symb >= 'a' && symb <= 'z' && symb != 'm') return false;
-    return true;
-  };
-
-  static bool IsOperator(const char& symb) {
-    if (symb == '+' || symb == '-' || symb == '*' || symb == '/' ||
-        symb == 'm' || symb == '^')
-      return false;
-    return true;
-  }
-
+  bool IsNumber() const;
+  bool IsFunction() const;
+  bool IsOpenParenthesis() const;
+  bool IsCloseParenthesis() const;
+  bool IsBinaryOperator() const;
+  bool IsUnaryOperator() const;
 
  private:
   std::pair<TypeTokens, std::string> type_and_token_;
   short priority_;
-                                        
 };
 }  // namespace s21
 
