@@ -17,6 +17,9 @@ class Tokenizator {
   bool TokenizationOpenParen(std::string& expression, int& i);
   bool TokenizationCloseParen(std::string& expression, int& i);
 
+  static bool IsCorrectFunction(const std::string& expression,
+                                const std::vector<std::string>& function);
+
   void PrintTokens() {
     auto count = 1;
     for (auto el : this->l_tokens_) {
@@ -27,6 +30,9 @@ class Tokenizator {
 
  private:
   std::list<Token> l_tokens_;
+  const std::vector<std::string> function_ = {
+      "sin", "cos", "tan", "log", "ln", "acos", "asin", "atan", "sqrt"};
 };
+
 }  // namespace s21
 #endif  // __TOKENIZATOR_H__

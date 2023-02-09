@@ -7,7 +7,6 @@
 #include <string>
 #include <vector>
 
-#include "token.h"
 #include "tokenizator.h"
 #include "validator.h"
 
@@ -25,8 +24,6 @@ class CalcModel {
  private:
   Tokenizator tokenizator_;
   Validator validator_;
-  std::vector<std::string> function_ = {"sin",  "cos",  "tan",  "log", "ln",
-                                        "acos", "asin", "atan", "sqrt"};
 };
 }  // namespace s21
 
