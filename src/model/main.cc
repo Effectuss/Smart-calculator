@@ -1,11 +1,13 @@
 #include "calcModel.h"
+// std::array<int, 5> ab;
+// std::arrat<int> dsad;
+// ab = dsad;
 
 int main() {
-  std::string str = "33.3e----010*323^l*sin/cos(32)tan+log-sqrt(+";
+  std::string str = "asin(-9)";
   s21::CalcModel model;
-  double x = .6e0;
+  double x = 7.5;
   std::cout << x << std::endl;
-
   try {
     model.GetResultExpression(str, x);
     model.GetTokenizator().PrintTokens();

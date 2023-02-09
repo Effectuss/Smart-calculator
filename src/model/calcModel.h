@@ -18,7 +18,6 @@ class CalcModel {
   Tokenizator& GetTokenizator();
   Validator& GetValidator();
 
-  // void Validation();
   // std::string& ComputeExpressin(std::string& intput_str, double& x);
 
  private:

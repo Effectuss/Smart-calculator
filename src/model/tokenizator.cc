@@ -2,6 +2,8 @@
 
 namespace s21 {
 
+std::list<Token>& Tokenizator::GetListToken() { return this->l_tokens_; }
+
 void Tokenizator::ToTokens(std::string& expression, double& x) {
   auto i = 0;
   for (auto i = 0; i < expression.length(); ++i) {
@@ -18,7 +20,6 @@ bool Tokenizator::TokenizationX(std::string& expression, double& x, int& i) {
   if (expression[i] == 'x') {
     this->l_tokens_.push_back(
         Token(Token::TypeTokens::NUMBER, std::to_string(x)));
-    i += this->l_tokens_.back().GetTokenString().length() - 1;
     return true;
   }
   return false;
@@ -27,6 +28,7 @@ bool Tokenizator::TokenizationX(std::string& expression, double& x, int& i) {
 bool Tokenizator::TokenizationNumber(std::string& expression, int& i) {
   if (isdigit(expression[i]) || expression[i] == '.') {
     auto tmp_move_along = expression.find_first_not_of(".0123456789e", i);
+
     if (expression[tmp_move_along - 1] == 'e') {
       while (expression[tmp_move_along] == '-' ||
              expression[tmp_move_along] == '+') {
@@ -36,16 +38,19 @@ bool Tokenizator::TokenizationNumber(std::string& expression, int& i) {
         ++tmp_move_along;
       }
     }
-    this->l_tokens_.push_back(Token(Token::TypeTokens::NUMBER,
-                                    expression.substr(i, tmp_move_along - i)));
-    i += this->l_tokens_.back().GetTokenString().length() - 1;
-    return true;
+    if (!Tokenizator::IsCorrectNumber(
+            expression.substr(i, tmp_move_along - i))) {
+      this->l_tokens_.push_back(Token(
+          Token::TypeTokens::NUMBER, expression.substr(i, tmp_move_along - i)));
+      i += this->l_tokens_.back().GetTokenString().length() - 1;
+      return true;
+    }
   }
   return false;
 }
 
 bool Tokenizator::TokenizationOperator(std::string& expression, int& i) {
-  if (!Token::IsOperator(expression[i])) {
+  if (!Tokenizator::IsOperator(expression[i])) {
     auto tmp_move_along = expression.find_first_not_of("+-^*/mod", i);
     std::string token = expression.substr(i, tmp_move_along - i);
     if (token == "mod" || token == "/" || token == "*") {
@@ -54,8 +59,13 @@ bool Tokenizator::TokenizationOperator(std::string& expression, int& i) {
     } else if (token == "+" || token == "-") {
       if (this->l_tokens_.empty() || this->l_tokens_.back().GetType() ==
                                          Token::TypeTokens::OPEN_PARENTHESIS) {
-        this->l_tokens_.push_back(
-            Token(Token::TypeTokens::UNARY_OPERATOR, token, 5));
+        if (token == "+") {
+          this->l_tokens_.push_back(
+              Token(Token::TypeTokens::UNARY_OPERATOR, "A", 5));
+        } else {
+          this->l_tokens_.push_back(
+              Token(Token::TypeTokens::UNARY_OPERATOR, "C", 5));
+        }
       } else {
         this->l_tokens_.push_back(
             Token(Token::TypeTokens::BINARY_OPERATOR, token, 2));
@@ -74,7 +84,7 @@ bool Tokenizator::TokenizationOperator(std::string& expression, int& i) {
 }
 
 bool Tokenizator::TokenizationFunction(std::string& expression, int& i) {
-  if (!Token::IsFunction(expression[i])) {
+  if (!Tokenizator::IsFunction(expression[i])) {
     auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
     if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
                                         this->function_)) {
@@ -114,6 +124,26 @@ bool Tokenizator::IsCorrectFunction(const std::string& expression,
   return true;
 }
 
-// bool Tokenizator::IsCorrectNumber(const std::string& expression, ) {}
+bool Tokenizator::IsCorrectNumber(const std::string& number) {
+  size_t pos;
+  std::stod(number, &pos);
+  if (pos == number.length()) {
+    return false;
+  } else {
+    throw std::invalid_argument("The number you entered is incorrect");
+  }
+}
+
+bool Tokenizator::IsFunction(const char& symb) {
+  if (symb >= 'a' && symb <= 'z' && symb != 'm') return false;
+  return true;
+};
+
+bool Tokenizator::IsOperator(const char& symb) {
+  if (symb == '+' || symb == '-' || symb == '*' || symb == '/' || symb == 'm' ||
+      symb == '^')
+    return false;
+  return true;
+}
 
 }  // namespace s21

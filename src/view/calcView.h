@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QWidget>
+#include <QMessageBox>
 
 #include "../controller/calcController.h"
 

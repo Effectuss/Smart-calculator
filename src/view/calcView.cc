@@ -75,7 +75,7 @@ void CalcView::CheckAndChangeStyleLabel() {
 }
 
 void CalcView::AddFunctionOrNot(QPushButton *button, bool is_func) {
-  if (!is_func) {
+  if (!is_func || button->text() == "mod") {
     this->input_label_ += button->text();
   } else {
     this->input_label_ += button->text() + '(';
@@ -116,9 +116,9 @@ void CalcView::StartCalculacte() {
     input_str = std::to_string(result);
     this->input_label_ = this->input_label_.fromStdString(input_str);
     ui->inputPanel->setText(this->input_label_);
-    this->input_label_.resize(0);
+    this->input_label_.resize(this->input_label_.length());
   } catch (const std::exception &e) {
-    std::cerr << e.what() << '\n';
+   QMessageBox::critical(this, "Warning", e.what());
   }
 }
 
