@@ -2,6 +2,7 @@
 #define __TOKEN_H__
 
 #include <string>
+#include <vector>
 
 namespace s21 {
 class Token {
@@ -15,19 +16,22 @@ class Token {
     FUNCTION
   };
 
-  Token() {}
   Token(const TypeTokens& type, const std::string& token, short priority = -1)
       : priority_{priority} {
     type_and_token_.first = type;
     type_and_token_.second = token;
   }
+
   short GetPriority() const { return priority_; }
+
   std::string GetTokenString() const { return type_and_token_.second; }
+
   TypeTokens GetType() { return type_and_token_.first; };
   static bool IsFunction(const char& symb) {
     if (symb >= 'a' && symb <= 'z' && symb != 'm') return false;
     return true;
   };
+
   static bool IsOperator(const char& symb) {
     if (symb == '+' || symb == '-' || symb == '*' || symb == '/' ||
         symb == 'm' || symb == '^')
@@ -35,9 +39,11 @@ class Token {
     return true;
   }
 
+
  private:
   std::pair<TypeTokens, std::string> type_and_token_;
   short priority_;
+                                        
 };
 }  // namespace s21
 

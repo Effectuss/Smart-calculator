@@ -75,12 +75,14 @@ bool Tokenizator::TokenizationOperator(std::string& expression, int& i) {
 
 bool Tokenizator::TokenizationFunction(std::string& expression, int& i) {
   if (!Token::IsFunction(expression[i])) {
-    auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i);
-    this->l_tokens_.push_back(Token(Token::TypeTokens::FUNCTION,
-                                    expression.substr(i, tmp_move_along - i),
-                                    6));
-    i += this->l_tokens_.back().GetTokenString().length() - 1;
-    return true;
+    auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
+    if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
+                                        this->function_)) {
+      this->l_tokens_.push_back(Token(Token::TypeTokens::FUNCTION,
+                                      expression.substr(i, tmp_move_along), 6));
+      i += this->l_tokens_.back().GetTokenString().length() - 1;
+      return true;
+    }
   }
   return false;
 }
@@ -102,5 +104,16 @@ bool Tokenizator::TokenizationCloseParen(std::string& expression, int& i) {
   }
   return false;
 }
+
+bool Tokenizator::IsCorrectFunction(const std::string& expression,
+                                    const std::vector<std::string>& function) {
+  for (const auto& el : function) {
+    if (el == expression) return false;
+  }
+  throw std::invalid_argument("Name of available functions is incorrect");
+  return true;
+}
+
+// bool Tokenizator::IsCorrectNumber(const std::string& expression, ) {}
 
 }  // namespace s21

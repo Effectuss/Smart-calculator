@@ -4,6 +4,7 @@
 namespace s21 {
 class Validator {
  public:
+ void Validation(Tokenizator &token);
  private:
 };
 }  // namespace s21

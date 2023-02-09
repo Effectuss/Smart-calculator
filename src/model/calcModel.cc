@@ -4,7 +4,7 @@ namespace s21 {
 
 double CalcModel::GetResultExpression(std::string& str_from_label, double& x) {
   this->tokenizator_.ToTokens(str_from_label, x);
-  
+  // this->validator_.Validation(this->tokenizator_);
   return 33.3;
 }
 
