@@ -18,6 +18,8 @@ class MathCalc {
   double ShuntingYard(std::string& str_from_label, double& x);
   Tokenizator& GetTokenizator() { return this->tokenizator_; }
   Validator& GetValidator() { return this->validator_; }
+  static void CountValue(std::stack<Token>& stack_operations,
+                         std::stack<double>& stack_number);
 
  private:
   static const std::map<std::string, std::function<double(double)>> kFunctions_;
