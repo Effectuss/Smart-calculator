@@ -4,7 +4,7 @@
 // ab = dsad;
 
 int main() {
-  std::string str = "9-3+sin(33)";
+  std::string str = "sin((((((2+3";
   s21::CalcModel model;
   double x = 7.5;
   std::cout << x << std::endl;
