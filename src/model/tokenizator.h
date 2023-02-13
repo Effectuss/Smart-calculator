@@ -36,9 +36,11 @@ class Tokenizator {
 
  private:
   std::list<Token> l_tokens_;
-  const std::vector<std::string> function_ = {
-      "sin", "cos", "tan", "log", "ln", "acos", "asin", "atan", "sqrt"};
+  static const std::vector<std::string> kFunction_;
 };
+
+inline const std::vector<std::string> Tokenizator::kFunction_{
+    "sin", "cos", "tan", "log", "ln", "acos", "asin", "atan", "sqrt"};
 
 }  // namespace s21
 #endif  // __TOKENIZATOR_H__

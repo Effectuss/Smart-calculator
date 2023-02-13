@@ -6,6 +6,7 @@ std::list<Token>& Tokenizator::GetListToken() { return this->l_tokens_; }
 
 void Tokenizator::ToTokens(std::string& expression, double& x) {
   auto i = 0;
+  this->l_tokens_.clear();
   for (auto i = 0; i < expression.length(); ++i) {
     if (TokenizationX(expression, x, i)) continue;
     if (TokenizationNumber(expression, i)) continue;
@@ -87,7 +88,7 @@ bool Tokenizator::TokenizationFunction(std::string& expression, int& i) {
   if (!Tokenizator::IsFunction(expression[i])) {
     auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
     if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
-                                        this->function_)) {
+                                        kFunction_)) {
       this->l_tokens_.push_back(Token(Token::TypeTokens::FUNCTION,
                                       expression.substr(i, tmp_move_along), 6));
       i += this->l_tokens_.back().GetTokenString().length() - 1;
