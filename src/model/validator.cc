@@ -26,7 +26,11 @@ void Validator::Validation(std::list<Token>& tokens) {
       ++previous;
     }
     if (ValidForLast(tokens.back())) {
-      if (this->count_close_parenthesis < this->count_open_parenthesis) {
+      if (this->count_open_parenthesis > this->count_close_parenthesis) {
+        while (this->count_open_parenthesis != this->count_close_parenthesis) {
+          tokens.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")"));
+          ++this->count_close_parenthesis;
+        }
       }
     }
   }
@@ -62,7 +66,7 @@ void Validator::ValidForOpenParenthesis(const Token& previous) {
 }
 
 void Validator::ValidForCloseParenthesis(const Token& previous) {
-  if (!(previous.IsNumber())) {
+  if (!(previous.IsNumber() || previous.IsCloseParenthesis())) {
     throw std::logic_error("Inncorect position for close parenthesis");
   }
 }

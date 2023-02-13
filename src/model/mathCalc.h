@@ -5,6 +5,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <stack>
 #include <string>
 #include <vector>
 
@@ -19,7 +20,7 @@ class MathCalc {
   Validator& GetValidator() { return this->validator_; }
 
  private:
-  static const std::map<std::string, double (*)(double)> kFunctions;
+  static const std::map<std::string, std::function<double(double)>> kFunctions;
   Tokenizator tokenizator_;
   Validator validator_;
 };
