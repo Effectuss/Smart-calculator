@@ -20,7 +20,7 @@ void Tokenizator::ToTokens(std::string& expression, double& x) {
 bool Tokenizator::TokenizationX(std::string& expression, double& x, int& i) {
   if (expression[i] == 'x') {
     this->l_tokens_.push_back(
-        Token(Token::TypeTokens::NUMBER, std::to_string(x)));
+        Token(Token::TypeTokens::kNumber, std::to_string(x)));
     return true;
   }
   return false;
@@ -42,7 +42,7 @@ bool Tokenizator::TokenizationNumber(std::string& expression, int& i) {
     if (!Tokenizator::IsCorrectNumber(
             expression.substr(i, tmp_move_along - i))) {
       this->l_tokens_.push_back(Token(
-          Token::TypeTokens::NUMBER, expression.substr(i, tmp_move_along - i)));
+          Token::TypeTokens::kNumber, expression.substr(i, tmp_move_along - i)));
       i += this->l_tokens_.back().GetTokenString().length() - 1;
       return true;
     }
@@ -56,24 +56,24 @@ bool Tokenizator::TokenizationOperator(std::string& expression, int& i) {
     std::string token = expression.substr(i, tmp_move_along - i);
     if (token == "mod" || token == "/" || token == "*") {
       this->l_tokens_.push_back(
-          Token(Token::TypeTokens::BINARY_OPERATOR, token, 3));
+          Token(Token::TypeTokens::kBinaryOperator, token, 3));
     } else if (token == "+" || token == "-") {
       if (this->l_tokens_.empty() || this->l_tokens_.back().GetType() ==
-                                         Token::TypeTokens::OPEN_PARENTHESIS) {
+                                         Token::TypeTokens::kOpenParenthesis) {
         if (token == "+") {
           this->l_tokens_.push_back(
-              Token(Token::TypeTokens::UNARY_OPERATOR, "A", 5));
+              Token(Token::TypeTokens::kUnaryOperator, "A", 5));
         } else {
           this->l_tokens_.push_back(
-              Token(Token::TypeTokens::UNARY_OPERATOR, "C", 5));
+              Token(Token::TypeTokens::kUnaryOperator, "C", 5));
         }
       } else {
         this->l_tokens_.push_back(
-            Token(Token::TypeTokens::BINARY_OPERATOR, token, 2));
+            Token(Token::TypeTokens::kBinaryOperator, token, 2));
       }
     } else if (token == "^") {
       this->l_tokens_.push_back(
-          Token(Token::TypeTokens::BINARY_OPERATOR, token, 4));
+          Token(Token::TypeTokens::kBinaryOperator, token, 4));
     } else {
       throw std::invalid_argument(
           "Binary operators cannot be repeated or unknown operator");
@@ -89,7 +89,7 @@ bool Tokenizator::TokenizationFunction(std::string& expression, int& i) {
     auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
     if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
                                         kFunction_)) {
-      this->l_tokens_.push_back(Token(Token::TypeTokens::FUNCTION,
+      this->l_tokens_.push_back(Token(Token::TypeTokens::kFunction,
                                       expression.substr(i, tmp_move_along), 6));
       i += this->l_tokens_.back().GetTokenString().length() - 1;
       return true;
@@ -100,7 +100,7 @@ bool Tokenizator::TokenizationFunction(std::string& expression, int& i) {
 
 bool Tokenizator::TokenizationOpenParen(std::string& expression, int& i) {
   if (expression[i] == '(') {
-    this->l_tokens_.push_back(Token(Token::TypeTokens::OPEN_PARENTHESIS, "("));
+    this->l_tokens_.push_back(Token(Token::TypeTokens::kOpenParenthesis, "("));
     i += this->l_tokens_.back().GetTokenString().length() - 1;
     return true;
   }
@@ -109,7 +109,7 @@ bool Tokenizator::TokenizationOpenParen(std::string& expression, int& i) {
 
 bool Tokenizator::TokenizationCloseParen(std::string& expression, int& i) {
   if (expression[i] == ')') {
-    this->l_tokens_.push_back(Token(Token::TypeTokens::CLOSE_PARENTHESIS, ")"));
+    this->l_tokens_.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")"));
     i += this->l_tokens_.back().GetTokenString().length() - 1;
     return true;
   }

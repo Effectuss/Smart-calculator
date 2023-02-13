@@ -8,12 +8,12 @@ namespace s21 {
 class Token {
  public:
   enum class TypeTokens {
-    NUMBER = 1,
-    OPEN_PARENTHESIS,
-    CLOSE_PARENTHESIS,
-    BINARY_OPERATOR,
-    UNARY_OPERATOR,
-    FUNCTION
+    kNumber = 1,
+    kOpenParenthesis,
+    kCloseParenthesis,
+    kBinaryOperator,
+    kUnaryOperator,
+    kFunction
   };
 
   Token(const TypeTokens& type, const std::string& token,
