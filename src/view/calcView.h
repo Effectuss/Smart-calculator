@@ -8,7 +8,7 @@
 #include <QWidget>
 #include <QMessageBox>
 
-#include "../controller/calcController.h"
+#include "calcController.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -56,7 +56,11 @@ else()
 endif()
 
 target_link_libraries(SmartCalculator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
+target_include_directories(SmartCalculator 
+PRIVATE 
+    controller/
+    model/
+    view/)
 set_target_properties(SmartCalculator PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

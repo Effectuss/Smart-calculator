@@ -1,7 +1,7 @@
 #ifndef __CALCCONTROLLER_H__
 #define __CALCCONTROLLER_H__
 
-#include "../model/calcModel.h"
+#include "calcModel.h"
 
 namespace s21 {
 class CalcController {

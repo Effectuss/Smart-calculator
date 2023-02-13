@@ -17,6 +17,8 @@ class Validator {
   static void ValidForBinOperator(const Token& previous);
   static void ValidForUnaryOperator(const Token& previous);
 
+  bool AdditionalCheckForBrackets();
+
  private:
   int count_open_parenthesis = 0;
   int count_close_parenthesis = 0;
