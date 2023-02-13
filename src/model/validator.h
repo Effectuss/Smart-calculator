@@ -5,7 +5,6 @@
 namespace s21 {
 class Validator {
  public:
-  Validator() : count_close_parenthesis{0}, count_open_parenthesis{0} {}
   void Validation(std::list<Token>& token);
 
   static bool ValidForFirst(const Token& current);
@@ -19,8 +18,8 @@ class Validator {
   static void ValidForUnaryOperator(const Token& previous);
 
  private:
-  int count_open_parenthesis;
-  int count_close_parenthesis;
+  int count_open_parenthesis = 0;
+  int count_close_parenthesis = 0;
 };
 }  // namespace s21
 #endif  // __VALIDATOR_H__

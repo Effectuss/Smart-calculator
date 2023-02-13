@@ -20,7 +20,9 @@ class MathCalc {
   Validator& GetValidator() { return this->validator_; }
 
  private:
-  static const std::map<std::string, std::function<double(double)>> kFunctions;
+  static const std::map<std::string, std::function<double(double)>> kFunctions_;
+  static const std::map<std::string, std::function<double(double, double)>>
+      kOperators_;
   Tokenizator tokenizator_;
   Validator validator_;
 };
