@@ -10,12 +10,12 @@ namespace s21 {
 class Tokenizator {
  public:
   void ToTokens(std::string& expression, double& x);
-  bool TokenizationNumber(std::string& expression, int& i);
-  bool TokenizationX(std::string& expression, double& x, int& i);
-  bool TokenizationOperator(std::string& expression, int& i);
-  bool TokenizationFunction(std::string& expression, int& i);
-  bool TokenizationOpenParen(std::string& expression, int& i);
-  bool TokenizationCloseParen(std::string& expression, int& i);
+  bool TokenizationNumber(std::string& expression, std::size_t& i);
+  bool TokenizationX(std::string& expression, double& x, std::size_t& i);
+  bool TokenizationOperator(std::string& expression, std::size_t& i);
+  bool TokenizationFunction(std::string& expression, std::size_t& i);
+  bool TokenizationOpenParen(std::string& expression, std::size_t& i);
+  bool TokenizationCloseParen(std::string& expression, std::size_t& i);
 
   static bool IsCorrectFunction(const std::string& expression,
                                 const std::vector<std::string>& function);
