@@ -16,27 +16,27 @@ std::string Token::GetTokenString() const { return type_and_token_.second; }
 Token::TypeTokens Token::GetType() const { return type_and_token_.first; };
 
 bool Token::IsNumber() const {
-  return type_and_token_.first == TypeTokens::NUMBER;
+  return type_and_token_.first == TypeTokens::kNumber;
 }
 
 bool Token::IsFunction() const {
-  return type_and_token_.first == TypeTokens::FUNCTION;
+  return type_and_token_.first == TypeTokens::kFunction;
 }
 
 bool Token::IsOpenParenthesis() const {
-  return type_and_token_.first == TypeTokens::OPEN_PARENTHESIS;
+  return type_and_token_.first == TypeTokens::kOpenParenthesis;
 }
 
 bool Token::IsCloseParenthesis() const {
-  return type_and_token_.first == TypeTokens::CLOSE_PARENTHESIS;
+  return type_and_token_.first == TypeTokens::kCloseParenthesis;
 }
 
 bool Token::IsBinaryOperator() const {
-  return type_and_token_.first == TypeTokens::BINARY_OPERATOR;
+  return type_and_token_.first == TypeTokens::kBinaryOperator;
 }
 
 bool Token::IsUnaryOperator() const {
-  return type_and_token_.first == TypeTokens::UNARY_OPERATOR;
+  return type_and_token_.first == TypeTokens::kUnaryOperator;
 }
 
 }  // namespace s21

@@ -15,8 +15,8 @@ namespace s21 {
 class MathCalc {
  public:
   double ShuntingYard(std::string& str_from_label, double& x);
-  Tokenizator& GetTokenizator();
-  Validator& GetValidator();
+  Tokenizator& GetTokenizator() { return this->tokenizator_; }
+  Validator& GetValidator() { return this->validator_; }
 
  private:
   static const std::map<std::string, double (*)(double)> kFunctions;
@@ -24,8 +24,6 @@ class MathCalc {
   Validator validator_;
 };
 
-inline const std::map<std::string, double (*)(double)> MathCalc::kFunctions{
-    {"sin", [](double x) -> double { return sin(x); }}};
 }  // namespace s21
 
 #endif  // __MATHCALC_H__

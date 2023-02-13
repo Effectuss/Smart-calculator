@@ -20,7 +20,6 @@ set(PROJECT_SOURCES
         ./view/calcView.h
         ./view/calcView.ui
         ./controller/calcController.cc
-        ./model/calcModel.cc
         ./controller/calcController.h
         ./model/calcModel.h
         ./model/token.h
