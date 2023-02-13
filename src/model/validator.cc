@@ -2,8 +2,11 @@
 
 namespace s21 {
 void Validator::Validation(std::list<Token>& tokens) {
+  this->count_close_parenthesis = 0;
+  this->count_open_parenthesis = 0;
   if (Validator::ValidForFirst(tokens.front())) {
     auto current = tokens.begin();
+    if (current->IsOpenParenthesis()) ++this->count_open_parenthesis;
     auto previous = tokens.begin();
     ++current;
     while (current != tokens.end()) {
@@ -25,7 +28,7 @@ void Validator::Validation(std::list<Token>& tokens) {
       ++current;
       ++previous;
     }
-    if (ValidForLast(tokens.back())) {
+    if (ValidForLast(tokens.back()) && this->AdditionalCheckForBrackets()) {
       if (this->count_open_parenthesis > this->count_close_parenthesis) {
         while (this->count_open_parenthesis != this->count_close_parenthesis) {
           tokens.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")"));
@@ -37,7 +40,8 @@ void Validator::Validation(std::list<Token>& tokens) {
 }
 
 bool Validator::ValidForFirst(const Token& current) {
-  if (current.IsUnaryOperator() || current.IsFunction() || current.IsNumber()) {
+  if (current.IsUnaryOperator() || current.IsFunction() || current.IsNumber() ||
+      current.IsOpenParenthesis()) {
     return true;
   } else {
     throw std::logic_error("Invalid value at the beginning of an expression");
@@ -87,6 +91,13 @@ void Validator::ValidForUnaryOperator(const Token& previous) {
 bool Validator::ValidForLast(const Token& current) {
   if (current.IsBinaryOperator() || current.IsOpenParenthesis()) {
     throw std::logic_error("The last symbol is wrong");
+  }
+  return true;
+}
+
+bool Validator::AdditionalCheckForBrackets() {
+  if (this->count_close_parenthesis > this->count_open_parenthesis) {
+    throw std::logic_error("Closing brackets must be exactly");
   }
   return true;
 }

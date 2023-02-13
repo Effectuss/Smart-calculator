@@ -4,7 +4,7 @@
 // ab = dsad;
 
 int main() {
-  std::string str = "2^3^2";
+  std::string str = "(((2+3";
   s21::CalcModel model;
   double x = 7.5;
   std::cout << x << std::endl;
