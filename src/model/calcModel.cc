@@ -2,14 +2,10 @@
 
 namespace s21 {
 
-double CalcModel::GetResultExpression(std::string& str_from_label, double& x) {
-  this->tokenizator_.ToTokens(str_from_label, x);
-  this->validator_.Validation(this->tokenizator_.GetListToken());
-  return 33.3;
+double CalcModel::GetResultMathExpression(std::string& str_from_label,
+                                          double& x) {
+  // auto aboba = kFunctions.at("sin")(5);
+  return this->math_calc_.ShuntingYard(str_from_label, x);
 }
-
-Tokenizator& CalcModel::GetTokenizator() { return this->tokenizator_; }
-
-Validator& CalcModel::GetValidator() { return this->validator_; }
 
 }  // namespace s21

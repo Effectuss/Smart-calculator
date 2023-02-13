@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         ./model/tokenizator.h
         ./model/validator.h
         ./model/validator.cc
+        ./model/mathCalc.h
+        ./model/mathCalc.cc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

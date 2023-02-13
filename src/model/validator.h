@@ -6,7 +6,7 @@ namespace s21 {
 class Validator {
  public:
   Validator() : count_close_parenthesis{0}, count_open_parenthesis{0} {}
-  void Validation(const std::list<Token>& token);
+  void Validation(std::list<Token>& token);
 
   static bool ValidForFirst(const Token& current);
   static bool ValidForLast(const Token& current);

@@ -1,7 +1,7 @@
 #include "validator.h"
 
 namespace s21 {
-void Validator::Validation(const std::list<Token>& tokens) {
+void Validator::Validation(std::list<Token>& tokens) {
   if (Validator::ValidForFirst(tokens.front())) {
     auto current = tokens.begin();
     auto previous = tokens.begin();
@@ -26,7 +26,7 @@ void Validator::Validation(const std::list<Token>& tokens) {
       ++previous;
     }
     if (ValidForLast(tokens.back())) {
-      if (this->count_close_parenthesis != this->count_open_parenthesis) {
+      if (this->count_close_parenthesis < this->count_open_parenthesis) {
       }
     }
   }
@@ -36,8 +36,7 @@ bool Validator::ValidForFirst(const Token& current) {
   if (current.IsUnaryOperator() || current.IsFunction() || current.IsNumber()) {
     return true;
   } else {
-    throw std::invalid_argument(
-        "Invalid value at the beginning of an expression");
+    throw std::logic_error("Invalid value at the beginning of an expression");
   }
   return false;
 }
@@ -45,44 +44,45 @@ bool Validator::ValidForFirst(const Token& current) {
 void Validator::ValidForNumber(const Token& previous) {
   if (!(previous.IsBinaryOperator() || previous.IsUnaryOperator() ||
         previous.IsOpenParenthesis())) {
-    throw std::invalid_argument("");
+    throw std::logic_error("Incorrect position for number");
   }
 }
 
 void Validator::ValidForFunction(const Token& previous) {
   if (!(previous.IsBinaryOperator() || previous.IsOpenParenthesis())) {
-    throw std::invalid_argument("");
+    throw std::logic_error("Incorrect position for function");
   }
 }
 
 void Validator::ValidForOpenParenthesis(const Token& previous) {
-  if (!(previous.IsFunction() || previous.IsBinaryOperator())) {
-    throw std::invalid_argument("");
+  if (!(previous.IsFunction() || previous.IsBinaryOperator() ||
+        previous.IsOpenParenthesis())) {
+    throw std::logic_error("Inncorect position for open parenthesis");
   }
 }
 
 void Validator::ValidForCloseParenthesis(const Token& previous) {
   if (!(previous.IsNumber())) {
-    throw std::invalid_argument("");
+    throw std::logic_error("Inncorect position for close parenthesis");
   }
 }
 
 void Validator::ValidForBinOperator(const Token& previous) {
   if (!(previous.IsNumber() || previous.IsCloseParenthesis() ||
         previous.IsOpenParenthesis())) {
-    throw std::invalid_argument("");
+    throw std::logic_error("Incorrect position for binary operator");
   }
 }
 
 void Validator::ValidForUnaryOperator(const Token& previous) {
   if (!(previous.IsOpenParenthesis())) {
-    throw std::invalid_argument("");
+    throw std::logic_error("Incorrect position for unary operator");
   }
 }
 
 bool Validator::ValidForLast(const Token& current) {
   if (current.IsBinaryOperator() || current.IsOpenParenthesis()) {
-    throw std::invalid_argument("");
+    throw std::logic_error("The last symbol is wrong");
   }
   return true;
 }
