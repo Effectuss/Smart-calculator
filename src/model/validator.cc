@@ -31,7 +31,7 @@ void Validator::Validation(std::list<Token>& tokens) {
     if (ValidForLast(tokens.back()) && this->AdditionalCheckForBrackets()) {
       if (this->count_open_parenthesis > this->count_close_parenthesis) {
         while (this->count_open_parenthesis != this->count_close_parenthesis) {
-          tokens.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")"));
+          tokens.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")", 0));
           ++this->count_close_parenthesis;
         }
       }
@@ -57,14 +57,15 @@ void Validator::ValidForNumber(const Token& previous) {
 }
 
 void Validator::ValidForFunction(const Token& previous) {
-  if (!(previous.IsBinaryOperator() || previous.IsOpenParenthesis())) {
+  if (!(previous.IsBinaryOperator() || previous.IsOpenParenthesis() ||
+        previous.IsUnaryOperator())) {
     throw std::logic_error("Incorrect position for function");
   }
 }
 
 void Validator::ValidForOpenParenthesis(const Token& previous) {
   if (!(previous.IsFunction() || previous.IsBinaryOperator() ||
-        previous.IsOpenParenthesis())) {
+        previous.IsOpenParenthesis() || previous.IsUnaryOperator())) {
     throw std::logic_error("Inncorect position for open parenthesis");
   }
 }

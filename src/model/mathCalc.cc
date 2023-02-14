@@ -24,8 +24,8 @@ inline const std::map<std::string, std::function<double(double, double)>>
          [](double val1, double val2) -> double { return pow(val2, val1); }},
         {"mod",
          [](double val1, double val2) -> double { return fmod(val2, val1); }},
-        {"A", [](double val1, double val2) -> double { return val2 - val1; }},
-        {"C", [](double val1, double val2) -> double { return val2 + val1; }}};
+        {"A", [](double val1, double val2) -> double { return val2 + val1; }},
+        {"C", [](double val1, double val2) -> double { return val2 - val1; }}};
 
 double MathCalc::ShuntingYard(std::string& str_from_label, double& x) {
   this->tokenizator_.ToTokens(str_from_label, x);
@@ -45,14 +45,13 @@ double MathCalc::ShuntingYard(std::string& str_from_label, double& x) {
       if (!stack_operations.size()) {
         stack_operations.push(*current_token);
         ++current_token;
-      } else if (stack_operations.size() &&
-                 current_token->GetPriority() >=
-                     stack_operations.top().GetPriority()) {
+      } else if ((current_token->GetPriority() >
+                      stack_operations.top().GetPriority() ||
+                  current_token->GetTokenString() == "^")) {
         stack_operations.push(*current_token);
         ++current_token;
-      } else if (stack_operations.size() &&
-                 current_token->GetPriority() <=
-                     stack_operations.top().GetPriority()) {
+      } else if (current_token->GetPriority() <=
+                 stack_operations.top().GetPriority()) {
         CountValue(stack_operations, stack_number);
       }
     }

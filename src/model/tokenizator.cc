@@ -104,7 +104,8 @@ bool Tokenizator::TokenizationFunction(std::string& expression,
 bool Tokenizator::TokenizationOpenParen(std::string& expression,
                                         std::size_t& i) {
   if (expression[i] == '(') {
-    this->l_tokens_.push_back(Token(Token::TypeTokens::kOpenParenthesis, "("));
+    this->l_tokens_.push_back(
+        Token(Token::TypeTokens::kOpenParenthesis, "(", 0));
     i += this->l_tokens_.back().GetTokenString().length() - 1;
     return true;
   }
@@ -114,7 +115,8 @@ bool Tokenizator::TokenizationOpenParen(std::string& expression,
 bool Tokenizator::TokenizationCloseParen(std::string& expression,
                                          std::size_t& i) {
   if (expression[i] == ')') {
-    this->l_tokens_.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")"));
+    this->l_tokens_.push_back(
+        Token(Token::TypeTokens::kCloseParenthesis, ")", 0));
     i += this->l_tokens_.back().GetTokenString().length() - 1;
     return true;
   }
