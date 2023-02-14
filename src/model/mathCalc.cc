@@ -45,7 +45,6 @@ double MathCalc::ShuntingYard(std::string& str_from_label, double& x) {
       if (!stack_operations.size()) {
         stack_operations.push(*current_token);
         ++current_token;
-        //  вот тут
       } else if ((current_token->GetPriority() >
                       stack_operations.top().GetPriority() ||
                   (current_token->GetTokenString() == "^" &&
