@@ -113,7 +113,6 @@ void CalcView::StartCalculacte() {
   }
   try {
     double result = this->controller_->CalculateMath(input_str, this->value_x_);
-    qDebug() << QString(input_str.data());
     input_str = std::to_string(result);
     this->input_label_ = this->input_label_.fromStdString(input_str);
     ui->inputPanel->setText(this->input_label_);

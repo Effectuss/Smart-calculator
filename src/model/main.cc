@@ -10,7 +10,6 @@ int main() {
   std::cout << x << std::endl;
   try {
     std::cout << model.GetResultMathExpression(str, x) << std::endl;
-    model.GetMathCalc().GetTokenizator().PrintTokens();
   } catch (const std::exception& e) {
     std::cerr << e.what() << '\n';
   }
