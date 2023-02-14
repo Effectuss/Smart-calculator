@@ -37,7 +37,8 @@ double MathCalc::ShuntingYard(std::string& str_from_label, double& x) {
     if (current_token->IsNumber()) {
       stack_number.push(std::stod(current_token->GetTokenString()));
       ++current_token;
-    } else {
+    } else if (!(current_token->IsOpenParenthesis() ||
+                 current_token->IsCloseParenthesis())) {
       if (current_token->IsUnaryOperator()) {
         stack_number.push(0.0);
       }
@@ -45,7 +46,7 @@ double MathCalc::ShuntingYard(std::string& str_from_label, double& x) {
         stack_operations.push(*current_token);
         ++current_token;
       } else if (stack_operations.size() &&
-                 current_token->GetPriority() >
+                 current_token->GetPriority() >=
                      stack_operations.top().GetPriority()) {
         stack_operations.push(*current_token);
         ++current_token;
