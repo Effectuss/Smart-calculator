@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include "../model/calcModel.h"
-#define PRECISION 1e-07
 
 TEST(MathCalculator, expression1) {
   std::string check_str = "3mod4*(-3.0*sin(4)-cos(0.3))";
@@ -270,3 +269,16 @@ TEST(MathCalculator, expression27) {
   double result_c_plus_plus = pow(x, (pow(sin(33), pow(sin(23), 3))));
   ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
 }
+
+TEST(MathCalculator, expression28) {
+  std::string check_str =
+      "x^sin(33)^sin(23)^3^33*sin(2)*sqrt(33)-22+(-123.3232)";
+  s21::CalcModel model;
+  double x = 33.33;
+  double result = model.GetResultMathExpression(check_str, x);
+  double result_c_plus_plus =
+      pow(x, (pow(sin(33), pow(sin(23), pow(3, 33))))) * sin(2) * sqrt(33) -
+      22 + (-123.3232);
+  ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
+}
+
