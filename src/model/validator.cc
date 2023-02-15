@@ -2,11 +2,11 @@
 
 namespace s21 {
 void Validator::Validation(std::list<Token>& tokens) {
-  this->count_close_parenthesis = 0;
-  this->count_open_parenthesis = 0;
+  int count_open_parenthesis = 0;
+  int count_close_parenthesis = 0;
   if (Validator::ValidForFirst(tokens.front())) {
     auto current = tokens.begin();
-    if (current->IsOpenParenthesis()) ++this->count_open_parenthesis;
+    if (current->IsOpenParenthesis()) ++count_open_parenthesis;
     auto previous = tokens.begin();
     ++current;
     while (current != tokens.end()) {
@@ -18,21 +18,21 @@ void Validator::Validation(std::list<Token>& tokens) {
         ValidForBinOperator(*previous);
       } else if ((*current).IsCloseParenthesis()) {
         ValidForCloseParenthesis(*previous);
-        this->count_close_parenthesis++;
+        ++count_close_parenthesis;
       } else if ((*current).IsOpenParenthesis()) {
         ValidForOpenParenthesis(*previous);
-        this->count_open_parenthesis++;
-      } else if ((*current).IsUnaryOperator()) {
-        ValidForUnaryOperator(*previous);
+        ++count_open_parenthesis;
       }
       ++current;
       ++previous;
     }
-    if (ValidForLast(tokens.back()) && this->AdditionalCheckForBrackets()) {
-      if (this->count_open_parenthesis > this->count_close_parenthesis) {
-        while (this->count_open_parenthesis != this->count_close_parenthesis) {
+    if (ValidForLast(tokens.back()) &&
+        this->AdditionalCheckForBrackets(count_close_parenthesis,
+                                         count_open_parenthesis)) {
+      if (count_open_parenthesis > count_close_parenthesis) {
+        while (count_open_parenthesis != count_close_parenthesis) {
           tokens.push_back(Token(Token::TypeTokens::kCloseParenthesis, ")", 0));
-          ++this->count_close_parenthesis;
+          ++count_close_parenthesis;
         }
       }
     }
@@ -77,27 +77,21 @@ void Validator::ValidForCloseParenthesis(const Token& previous) {
 }
 
 void Validator::ValidForBinOperator(const Token& previous) {
-  if (!(previous.IsNumber() || previous.IsCloseParenthesis() ||
-        previous.IsOpenParenthesis())) {
+  if (!(previous.IsNumber() || previous.IsCloseParenthesis())) {
     throw std::logic_error("Incorrect position for binary operator");
   }
 }
 
-void Validator::ValidForUnaryOperator(const Token& previous) {
-  if (!(previous.IsOpenParenthesis())) {
-    throw std::logic_error("Incorrect position for unary operator");
-  }
-}
-
 bool Validator::ValidForLast(const Token& current) {
-  if (current.IsBinaryOperator() || current.IsOpenParenthesis()) {
+  if (current.IsBinaryOperator() || current.IsOpenParenthesis() ||
+      current.IsFunction() || current.IsUnaryOperator()) {
     throw std::logic_error("The last symbol is wrong");
   }
   return true;
 }
 
-bool Validator::AdditionalCheckForBrackets() {
-  if (this->count_close_parenthesis > this->count_open_parenthesis) {
+bool Validator::AdditionalCheckForBrackets(const int& close, const int& open) {
+  if (close > open) {
     throw std::logic_error("Closing brackets must be exactly");
   }
   return true;

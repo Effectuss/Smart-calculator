@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QMessageBox>
+#include <qcustomplot.h>
 
 #include "calcController.h"
 

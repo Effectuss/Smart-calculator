@@ -282,3 +282,315 @@ TEST(MathCalculator, expression28) {
   ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
 }
 
+TEST(MathCalculator, expression29) {
+  std::string check_str =
+      "15/(7-(1+1))*3-(2+(1+1))*15/(7-(200+1))*3-(2+(1+1))*(15/"
+      "(7-(1+1))*3-(2+(1+1))+15/(7-(1+1))*3-(2+(1+1)))";
+  s21::CalcModel model;
+  double x = 33.33;
+  double result = model.GetResultMathExpression(check_str, x);
+  double result_c_plus_plus = -30.072164948453608;
+  ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
+}
+
+TEST(ExeptionrTest, exeption1) {
+  try {
+    std::string input_str = "3---4***23";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+  } catch (const std::exception& exp) {
+    std::string exeption_str =
+        "Binary operators cannot be repeated or unknown operator";
+    EXPECT_STREQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption2) {
+  try {
+    std::string input_str = "3mo4*3";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str =
+        "Binary operators cannot be repeated or unknown operator";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption3) {
+  try {
+    std::string input_str = "si(33)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Name of available functions is incorrect";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption4) {
+  try {
+    std::string input_str = "cos(33)+t(33)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Name of available functions is incorrect";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption5) {
+  try {
+    std::string input_str = "3e";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The number you entered is incorrect";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption6) {
+  try {
+    std::string input_str = "3-3e";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The number you entered is incorrect";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption7) {
+  try {
+    std::string input_str = ")sin(33+33)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str =
+        "Invalid value at the beginning of an expression";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption8) {
+  try {
+    std::string input_str = "^33-23";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str =
+        "Invalid value at the beginning of an expression";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption9) {
+  try {
+    std::string input_str = "sin33+42";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for number";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption10) {
+  try {
+    std::string input_str = "33)23";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for number";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption11) {
+  try {
+    std::string input_str = "sin(33)cos(23)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for function";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption12) {
+  try {
+    std::string input_str = "sin(33)+33)cos";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for function";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption13) {
+  try {
+    std::string input_str = "33(22";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Inncorect position for open parenthesis";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption14) {
+  try {
+    std::string input_str = "(33)(";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Inncorect position for open parenthesis";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption16) {
+  try {
+    std::string input_str = "(33+()";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Inncorect position for close parenthesis";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption17) {
+  try {
+    std::string input_str = "sin+33";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for binary operator";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption18) {
+  try {
+    std::string input_str = "(*33)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for binary operator";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption19) {
+  try {
+    std::string input_str = "(33)-(^33)*(/23)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Incorrect position for binary operator";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption20) {
+  try {
+    std::string input_str = "3+23^sin(32)+sin";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The last symbol is wrong";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption21) {
+  try {
+    std::string input_str = "-";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The last symbol is wrong";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption22) {
+  try {
+    std::string input_str = "33+23*(";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The last symbol is wrong";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption23) {
+  try {
+    std::string input_str = "33-23-";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "The last symbol is wrong";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption24) {
+  try {
+    std::string input_str = "42^33+23))))))";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    std::string exeption_str = "Closing brackets must be exactly";
+    EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}

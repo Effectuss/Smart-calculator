@@ -26,14 +26,6 @@ class Tokenizator {
 
   std::list<Token>& GetListToken();
 
-  void PrintTokens() {
-    auto count = 1;
-    for (auto el : this->l_tokens_) {
-      std::cout << count << ". TOKEN: " << el.GetTokenString()
-                << ", PRIORITY: " << el.GetPriority() << std::endl;
-    }
-  }
-
  private:
   std::list<Token> l_tokens_;
   static const std::vector<std::string> kFunction_;
