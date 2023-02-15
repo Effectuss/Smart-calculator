@@ -56,6 +56,7 @@ CalcView::CalcView(QWidget *parent)
 
   // Delete One Symb
   connect(ui->actionDeleteOne, SIGNAL(clicked()), this, SLOT(DeleteOneSymb()));
+
 }
 
 void CalcView::SetController(CalcController *controller) {
@@ -63,15 +64,15 @@ void CalcView::SetController(CalcController *controller) {
 }
 
 void CalcView::CheckAndChangeStyleLabel() {
-  if (this->input_label_.length() == 60) {
+  if (this->input_label_.length() == 50) {
     ui->inputPanel->setStyleSheet(
-        "font: 14pt; border: 1 solid #b8b8b8; background-color: #fff;");
+        "font: 16pt; border: 1 solid #b8b8b8; background-color: #fff;");
   } else if (this->input_label_.length() == 80) {
     ui->inputPanel->setStyleSheet(
-        "font: 11pt; border: 1 solid #b8b8b8; background-color: #fff;");
+        "font: 13pt; border: 1 solid #b8b8b8; background-color: #fff;");
   } else if (this->input_label_.length() == 100) {
     ui->inputPanel->setStyleSheet(
-        "font: 9pt; border: 1 solid #b8b8b8; background-color: #fff;");
+        "font: 12pt; border: 1 solid #b8b8b8; background-color: #fff;");
   }
 }
 
@@ -116,6 +117,8 @@ void CalcView::StartCalculacte() {
     double result = this->controller_->CalculateMath(input_str, this->value_x_);
     input_str = std::to_string(result);
     this->input_label_ = this->input_label_.fromStdString(input_str);
+    ui->inputPanel->setStyleSheet(
+        "font: 20pt; border: 1 solid #b8b8b8; background-color: #fff;");
     ui->inputPanel->setText(this->input_label_);
     this->input_label_.resize(this->input_label_.length());
   } catch (const std::exception &e) {
@@ -124,5 +127,11 @@ void CalcView::StartCalculacte() {
 }
 
 CalcView::~CalcView() { delete ui; }
+
+void CalcView::on_actionGraph_triggered()
+{
+    graph_window = new GraphView();
+    graph_window->show();
+}
 
 }  // namespace s21

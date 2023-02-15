@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <qcustomplot.h>
 
+#include "graphView.h"
 #include "calcController.h"
 
 QT_BEGIN_NAMESPACE
@@ -35,9 +36,13 @@ class CalcView : public QMainWindow {
   void DeleteOneSymb();
   void StartCalculacte();
 
- private:
+private slots:
+    void on_actionGraph_triggered();
+
+private:
   Ui::CalcView *ui;
-  s21::CalcController *controller_;
+  GraphView *graph_window;
+  CalcController *controller_;
   QString input_label_;
   double value_x_;
 };

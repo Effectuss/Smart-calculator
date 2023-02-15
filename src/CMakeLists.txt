@@ -32,6 +32,10 @@ set(PROJECT_SOURCES
         ./model/mathCalc.cc
         ./model/qcustomplot.cpp
         ./model/qcustomplot.h
+        ./view/graphView.h
+        ./view/graphView.cc
+        ./view/graphView.ui
+        ./model/graphBuilder.cc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -56,6 +60,7 @@ else()
         )
     endif()
 endif()
+
 
 target_link_libraries(SmartCalculator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(SmartCalculator PRIVATE Qt${QT_VERSION_MAJOR}::PrintSupport)
