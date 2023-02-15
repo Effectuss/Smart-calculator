@@ -15,6 +15,15 @@ public:
     explicit GraphView(QWidget *parent = nullptr);
     ~GraphView();
 
+
+protected:
+    void closeEvent(QCloseEvent *event);
+
+private slots:
+    void on_pushButton_clicked();
+signals:
+    void showParent();
+
 private:
     Ui::GraphView *ui;
 };
