@@ -2,6 +2,7 @@
 
 #include "ui_calcView.h"
 
+
 namespace s21 {
 CalcView::CalcView(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::CalcView) {

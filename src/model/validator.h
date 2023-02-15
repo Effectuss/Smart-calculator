@@ -15,13 +15,8 @@ class Validator {
   static void ValidForOpenParenthesis(const Token& previous);
   static void ValidForCloseParenthesis(const Token& previous);
   static void ValidForBinOperator(const Token& previous);
-  static void ValidForUnaryOperator(const Token& previous);
 
-  bool AdditionalCheckForBrackets();
-
- private:
-  int count_open_parenthesis = 0;
-  int count_close_parenthesis = 0;
+  bool AdditionalCheckForBrackets(const int& close, const int& open);
 };
 }  // namespace s21
 #endif  // __VALIDATOR_H__
