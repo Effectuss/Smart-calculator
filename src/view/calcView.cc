@@ -133,7 +133,6 @@ void CalcView::on_actionGraph_triggered()
     this->hide();
     graph_window = new GraphView();
     graph_window->show();
-//    graph_window->setParent(this->parentWidget());
     connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
 }
 

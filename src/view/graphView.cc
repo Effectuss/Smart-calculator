@@ -20,10 +20,4 @@ void GraphView::closeEvent(QCloseEvent *event)
     this->close();
 }
 
-
-void GraphView::on_pushButton_clicked()
-{
-
-}
-
 }
