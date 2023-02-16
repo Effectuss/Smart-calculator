@@ -10,7 +10,7 @@
 #include <qcustomplot.h>
 
 #include "graphView.h"
-#include "calcController.h"
+#include "controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,9 +24,10 @@ class CalcView : public QMainWindow {
 
  public:
   CalcView(QWidget *parent = nullptr);
-  void SetController(CalcController *controller);
+  void SetController(Controller *controller);
   void CheckAndChangeStyleLabel();
   void AddFunctionOrNot(QPushButton *button, bool is_func);
+  Controller* GetController() {return this->controller_;}
   ~CalcView();
 
 
@@ -42,7 +43,7 @@ private slots:
 private:
   Ui::CalcView *ui;
   GraphView *graph_window;
-  CalcController *controller_;
+  Controller *controller_;
   QString input_label_;
   double value_x_;
 };

@@ -19,9 +19,9 @@ set(PROJECT_SOURCES
         ./view/calcView.cc
         ./view/calcView.h
         ./view/calcView.ui
-        ./controller/calcController.cc
-        ./controller/calcController.h
-        ./model/calcModel.h
+        ./controller/controller.cc
+        ./controller/controller.h
+        ./model/model.h
         ./model/token.h
         ./model/token.cc
         ./model/tokenizator.cc
@@ -36,6 +36,7 @@ set(PROJECT_SOURCES
         ./view/graphView.cc
         ./view/graphView.ui
         ./model/graphBuilder.cc
+        ./model/graphBuilder.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

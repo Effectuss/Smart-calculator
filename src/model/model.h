@@ -6,7 +6,7 @@
 
 namespace s21 {
 
-class CalcModel {
+class Model {
  public:
   double GetResultMathExpression(std::string& str_from_label, double& x) {
     return this->math_calc_.ShuntingYard(str_from_label, x);
