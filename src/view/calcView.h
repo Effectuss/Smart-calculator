@@ -29,15 +29,15 @@ class CalcView : public QMainWindow {
   void AddFunctionOrNot(QPushButton *button, bool is_func);
   ~CalcView();
 
- public slots:
-  void AddNotFunction();
-  void AddFunction();
-  void ClearInputPanel();
-  void DeleteOneSymb();
-  void StartCalculacte();
 
 private slots:
-    void on_actionGraph_triggered();
+    void OnActionGraphTriggered();
+    void OnActionMathTriggered();
+    void AddNotFunction();
+    void AddFunction();
+    void ClearInputPanel();
+    void DeleteOneSymb();
+    void StartCalculacte();
 
 private:
   Ui::CalcView *ui;

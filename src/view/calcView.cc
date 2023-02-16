@@ -5,7 +5,8 @@
 
 namespace s21 {
 CalcView::CalcView(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::CalcView) {
+    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView) {
+
   ui->setupUi(this);
 
   // Solo symb
@@ -56,6 +57,10 @@ CalcView::CalcView(QWidget *parent)
 
   // Delete One Symb
   connect(ui->actionDeleteOne, SIGNAL(clicked()), this, SLOT(DeleteOneSymb()));
+
+  // Menu connect
+  connect(ui->actionGraph, SIGNAL(triggered()), this, SLOT(OnActionGraphTriggered()));
+  connect(ui->actionMath, SIGNAL(triggered()), this, SLOT(OnActionMathTriggered()));
 
 }
 
@@ -126,14 +131,19 @@ void CalcView::StartCalculacte() {
   }
 }
 
-CalcView::~CalcView() { delete ui; }
-
-void CalcView::on_actionGraph_triggered()
+void CalcView::OnActionGraphTriggered()
 {
     this->hide();
-    graph_window = new GraphView();
     graph_window->show();
     connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
 }
+
+void CalcView::OnActionMathTriggered()
+{
+    graph_window->hide();
+    this->show();
+}
+
+CalcView::~CalcView() { delete ui; }
 
 }  // namespace s21

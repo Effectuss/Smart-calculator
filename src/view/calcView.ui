@@ -739,19 +739,25 @@ background-color: #fff</string>
     <property name="title">
      <string>Menu</string>
     </property>
+    <addaction name="actionMath"/>
     <addaction name="actionGraph"/>
-    <addaction name="actionCredit_Calculator"/>
+    <addaction name="actionCredit"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
+  <action name="actionMath">
+   <property name="text">
+    <string>Math calculator</string>
+   </property>
+  </action>
   <action name="actionGraph">
    <property name="text">
     <string>Graph</string>
    </property>
   </action>
-  <action name="actionCredit_Calculator">
+  <action name="actionCredit">
    <property name="text">
-    <string>Credit Calculator</string>
+    <string>Credit calculator</string>
    </property>
   </action>
  </widget>

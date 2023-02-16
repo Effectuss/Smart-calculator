@@ -68,6 +68,15 @@ color: rgb(0, 0, 0);
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
        </property>
+       <property name="minimum">
+        <double>0.010000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>10.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.010000000000000</double>
+       </property>
       </widget>
      </item>
      <item row="5" column="2">
@@ -115,6 +124,15 @@ color: rgb(0, 0, 0);
        </property>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="minimum">
+        <double>-1000000.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>-15.000000000000000</double>
        </property>
       </widget>
      </item>
@@ -206,6 +224,12 @@ color: rgb(0, 0, 0);
        </property>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="maximum">
+        <double>1000000.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>15.000000000000000</double>
        </property>
       </widget>
      </item>
@@ -361,6 +385,18 @@ background-color: #fff</string>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
        </property>
+       <property name="decimals">
+        <number>2</number>
+       </property>
+       <property name="minimum">
+        <double>-1000000.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>0.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>-15.000000000000000</double>
+       </property>
       </widget>
      </item>
      <item row="2" column="3">
@@ -373,6 +409,12 @@ background-color: #fff</string>
        </property>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="maximum">
+        <double>1000000.000000000000000</double>
+       </property>
+       <property name="value">
+        <double>15.000000000000000</double>
        </property>
       </widget>
      </item>
