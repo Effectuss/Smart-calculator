@@ -37,6 +37,8 @@ private slots:
 private:
     Ui::GraphView *ui;
     Controller *controller_;
+    QVector<double> x_vector;
+    QVector<double> y_vector;
 };
 }
 
