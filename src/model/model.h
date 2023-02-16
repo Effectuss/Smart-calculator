@@ -11,11 +11,17 @@ class Model {
   double GetResultMathExpression(std::string& str_from_label, double& x) {
     return this->math_calc_.ShuntingYard(str_from_label, x);
   }
+
+  void FillVectors(QVector<double> &x_vector, QVector<double> &y_vector,std::string& expression) {
+          qDebug() << "Yi";
+    graph_builder_.FillVectors(x_vector,y_vector,expression);
+  }
+
   MathCalc& GetMathCalc() { return this->math_calc_; }
 
  private:
   MathCalc math_calc_;
-//  GraphBuilder graph_builder_;
+  GraphBuilder graph_builder_;
 };
 
 }  // namespace s21

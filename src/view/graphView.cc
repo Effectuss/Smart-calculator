@@ -19,7 +19,8 @@ void GraphView::InitWindow(QString &expression_for_graph)
     ui->graphWidget->xAxis->setRange(ui->valueMinX->value(), ui->valueMaxX->value());
     ui->graphWidget->yAxis->setRange(ui->valueMinY->value(), ui->valueMaxY->value());
     ui->expressionGraph->setText(expression_for_graph);
-
+    controller_->FillVectors(this->x_vector, this->y_vector, expression_for_graph.toStdString());
+//    this->PaintGraph(this->x_vector, this->y_vector);
 }
 
 void GraphView::SetDefaultSettings()
@@ -33,17 +34,16 @@ void GraphView::SetDefaultSettings()
     ui->valueStep->setValue(0.01);
     ui->graphWidget->xAxis->setRange(ui->valueMinX->value(), ui->valueMaxX->value());
     ui->graphWidget->yAxis->setRange(ui->valueMinY->value(), ui->valueMaxY->value());
+    ui->graphWidget->clearGraphs();
+    ui->graphWidget->addGraph();
 }
 
-void PaintGraph(const QVector<double>& x_vector, const QVector<double>& y_vector) {
+void GraphView::PaintGraph(const QVector<double>& x_vector, const QVector<double>& y_vector) {
 
 }
 
 void GraphView::closeEvent(QCloseEvent *event)
 {
-//    this->SetDefaultSettings();
-//    emit showParent();
-//    this->close();
     this->OnActionClose();
 }
 

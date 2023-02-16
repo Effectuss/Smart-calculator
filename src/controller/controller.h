@@ -8,6 +8,7 @@ class Controller {
  public:
   Controller(Model *model) : model_{model} {};
   double CalculateMath(std::string &str_from_label, double &x);
+  void FillVectors(QVector<double>&x_vector, QVector<double>&y_vector,std::string expression);
 
  private:
   Model *model_;
