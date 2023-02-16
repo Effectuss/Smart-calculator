@@ -2,6 +2,7 @@
 #define GRAPHVIEW_H
 
 #include <QWidget>
+#include "controller.h"
 
 namespace Ui {
 class GraphView;
@@ -13,6 +14,8 @@ class GraphView : public QWidget
 
 public:
     explicit GraphView(QWidget *parent = nullptr);
+    void InitWindow();
+    void SetController(Controller *controller) { this->controller_ = controller; }
     ~GraphView();
 
 
@@ -22,8 +25,15 @@ protected:
 signals:
     void showParent();
 
+private slots:
+    void OnActionBuild();
+    void OnActionClose();
+    void OnActionClear();
+
 private:
     Ui::GraphView *ui;
+    Controller *controller_;
+
 };
 }
 

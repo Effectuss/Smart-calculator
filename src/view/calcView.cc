@@ -5,7 +5,7 @@
 
 namespace s21 {
 CalcView::CalcView(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView) {
+    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView()) {
 
   ui->setupUi(this);
 
@@ -64,7 +64,7 @@ CalcView::CalcView(QWidget *parent)
 
 }
 
-void CalcView::SetController(CalcController *controller) {
+void CalcView::SetController(Controller *controller) {
   this->controller_ = controller;
 }
 
@@ -136,6 +136,7 @@ void CalcView::OnActionGraphTriggered()
     this->hide();
     graph_window->show();
     connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
+    graph_window->InitWindow();
 }
 
 void CalcView::OnActionMathTriggered()
