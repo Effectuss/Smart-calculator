@@ -134,9 +134,9 @@ void CalcView::StartCalculacte() {
 void CalcView::OnActionGraphTriggered()
 {
     this->hide();
+    graph_window->InitWindow(this->input_label_);
     graph_window->show();
     connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
-    graph_window->InitWindow();
 }
 
 void CalcView::OnActionMathTriggered()
