@@ -3,7 +3,7 @@
 #include "../model/calcModel.h"
 
 TEST(MathCalculator, expression1) {
-  std::string check_str = "3mod4*(-3.0*sin(4)-cos(0.3))";
+  std::string check_str = "3 mod4*(-3.0*sin(4)-cos(0.3))";
   s21::CalcModel model;
   double x = 0.0;
   double result = model.GetResultMathExpression(check_str, x);
@@ -145,7 +145,7 @@ TEST(MathCalculator, expression15) {
 }
 
 TEST(MathCalculator, expression16) {
-  std::string check_str = "-(asin(+0.3465346)/2)+(atan(1.302+0.5)-1.2)";
+  std::string check_str = "-(asin (+0.3465346)/2)+(atan(1.302+0.5)-1.2)";
   s21::CalcModel model;
   double x = 0.0;
   double result = model.GetResultMathExpression(check_str, x);
@@ -592,5 +592,29 @@ TEST(ExeptionrTest, exeption24) {
   } catch (const std::exception& exp) {
     std::string exeption_str = "Closing brackets must be exactly";
     EXPECT_STRCASEEQ(exeption_str.c_str(), exp.what());
+  }
+}
+
+TEST(ExeptionrTest, exeption25) {
+  try {
+    std::string input_str = "h32gti123wqkmbkl+33-x";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    SUCCEED();
+  }
+}
+
+TEST(ExeptionrTest, exeption26) {
+  try {
+    std::string input_str = "  12 asd + sad dfkdd kogd(223)";
+    s21::CalcModel model;
+    double x = 0.0;
+    model.GetResultMathExpression(input_str, x);
+    FAIL() << "Exception does not thrown";
+  } catch (const std::exception& exp) {
+    SUCCEED();
   }
 }

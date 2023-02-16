@@ -21,7 +21,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>729</width>
+    <width>775</width>
     <height>309</height>
    </size>
   </property>
@@ -383,6 +383,10 @@ color: rgb(0, 0, 0);
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 151, 57);
+  color: white; </string>
       </property>
       <property name="text">
        <string>←</string>
