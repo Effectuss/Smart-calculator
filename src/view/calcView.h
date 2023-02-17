@@ -25,9 +25,9 @@ class CalcView : public QMainWindow {
  public:
   CalcView(QWidget *parent = nullptr);
   void SetController(Controller *controller);
+  Controller* GetController() {return this->controller_;}
   void CheckAndChangeStyleLabel();
   void AddFunctionOrNot(QPushButton *button, bool is_func);
-  Controller* GetController() {return this->controller_;}
   ~CalcView();
 
 

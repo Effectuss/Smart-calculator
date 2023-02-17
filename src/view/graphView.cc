@@ -16,11 +16,19 @@ GraphView::GraphView(QWidget *parent) :
 
 void GraphView::InitWindow(QString &expression_for_graph)
 {
-    ui->graphWidget->xAxis->setRange(ui->valueMinX->value(), ui->valueMaxX->value());
+    this->step = ui->valueStep->value();
+    this->x_begin =ui->valueMinX->value();
+    this->x_end =ui->valueMaxX->value() + this->step;
+    ui->graphWidget->xAxis->setRange(this->x_begin, this->x_end);
     ui->graphWidget->yAxis->setRange(ui->valueMinY->value(), ui->valueMaxY->value());
     ui->expressionGraph->setText(expression_for_graph);
-    controller_->FillVectors(this->x_vector, this->y_vector, expression_for_graph.toStdString());
-//    this->PaintGraph(this->x_vector, this->y_vector);
+    this->BuildPointsForGraph(expression_for_graph);
+    this->PaintGraph();
+}
+
+void GraphView::SetController(Controller *controller)
+{
+ this->controller_ = controller;
 }
 
 void GraphView::SetDefaultSettings()
@@ -35,10 +43,21 @@ void GraphView::SetDefaultSettings()
     ui->graphWidget->xAxis->setRange(ui->valueMinX->value(), ui->valueMaxX->value());
     ui->graphWidget->yAxis->setRange(ui->valueMinY->value(), ui->valueMaxY->value());
     ui->graphWidget->clearGraphs();
-    ui->graphWidget->addGraph();
+//    ui->graphWidget->addGraph();
 }
 
-void GraphView::PaintGraph(const QVector<double>& x_vector, const QVector<double>& y_vector) {
+void GraphView::BuildPointsForGraph(QString &expression_for_graph)
+{
+    double tmp_y = 0.0;
+    std::string expression_std = expression_for_graph.toStdString();
+    for(double x = this->x_begin; x <= this->x_end; x += this->step) {
+        tmp_y = this->controller_->CalculateMath(expression_std,x);
+        this->x_points.push_back(x);
+        this->y_points.push_back(tmp_y);
+    }
+}
+
+void GraphView::PaintGraph() {
 
 }
 

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 
 namespace s21 {
 class Token {
