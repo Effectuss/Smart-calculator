@@ -2,12 +2,14 @@
 
 namespace s21 {
 double Controller::CalculateMath(std::string& str_from_label, double& x) {
-    return model_->GetResultMathExpression(str_from_label, x);
+        qDebug() << "TI CHO";
+    return this->model_->GetResultMathExpression(str_from_label, x);
 }
 
-void Controller::FillVectors(QVector<double> &x_vector, QVector<double> &y_vector,std::string expression)
+void Controller::PrintZZZ()
 {
-     model_->FillVectors(x_vector,y_vector,expression);
+    qDebug() << "CONTROLLER";
+    this->model_->PrintASD();
 }
 
 }  // namespace s21

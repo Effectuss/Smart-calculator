@@ -61,7 +61,6 @@ CalcView::CalcView(QWidget *parent)
   // Menu connect
   connect(ui->actionGraph, SIGNAL(triggered()), this, SLOT(OnActionGraphTriggered()));
   connect(ui->actionMath, SIGNAL(triggered()), this, SLOT(OnActionMathTriggered()));
-
 }
 
 void CalcView::SetController(Controller *controller) {
@@ -133,10 +132,15 @@ void CalcView::StartCalculacte() {
 
 void CalcView::OnActionGraphTriggered()
 {
-    this->hide();
+    try {
+    graph_window->SetController(this->controller_);
     graph_window->InitWindow(this->input_label_);
-    graph_window->show();
     connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
+    this->hide();
+    graph_window->show();
+    } catch(const std::exception &e) {
+        QMessageBox::critical(this, "Warning", "Invalid expression for build grahp");
+    }
 }
 
 void CalcView::OnActionMathTriggered()

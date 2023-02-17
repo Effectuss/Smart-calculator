@@ -7,7 +7,6 @@
 #include <map>
 #include <stack>
 #include <string>
-#include <vector>
 
 #include "tokenizator.h"
 #include "validator.h"

@@ -14,6 +14,9 @@ void Tokenizator::ToTokens(std::string& expression, double& x) {
     if (TokenizationOperator(expression, i)) continue;
     if (TokenizationFunction(expression, i)) continue;
   }
+  if(this->l_tokens_.empty()) {
+      this->l_tokens_.push_back(Token(Token::TypeTokens::kNumber, "0.0"));
+  }
 }
 
 bool Tokenizator::TokenizationX(std::string& expression, double& x,

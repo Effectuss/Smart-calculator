@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDoubleSpinBox>
+#include <QVector>
 #include "controller.h"
 #include "qcustomplot.h"
 
@@ -17,9 +18,12 @@ class GraphView : public QWidget
 public:
     explicit GraphView(QWidget *parent = nullptr);
     void InitWindow(QString &expression_for_graph);
-    void SetController(Controller *controller) { this->controller_ = controller; }
-    void PaintGraph(const QVector<double>& x_vector, const QVector<double>& y_vector);
+    void SetController(Controller *controller);
     void SetDefaultSettings();
+
+    void BuildPointsForGraph(QString &expression_for_graph);
+    void PaintGraph();
+
     ~GraphView();
 
 
@@ -37,8 +41,11 @@ private slots:
 private:
     Ui::GraphView *ui;
     Controller *controller_;
-    QVector<double> x_vector;
-    QVector<double> y_vector;
+    QVector<double> x_points;
+    QVector<double> y_points;
+    double step;
+    double x_begin;
+    double x_end;
 };
 }
 

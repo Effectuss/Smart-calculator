@@ -2,13 +2,13 @@
 #define __CALCCONTROLLER_H__
 
 #include "model.h"
-
+#include <QDebug>
 namespace s21 {
 class Controller {
  public:
   Controller(Model *model) : model_{model} {};
   double CalculateMath(std::string &str_from_label, double &x);
-  void FillVectors(QVector<double>&x_vector, QVector<double>&y_vector,std::string expression);
+  void PrintZZZ();
 
  private:
   Model *model_;

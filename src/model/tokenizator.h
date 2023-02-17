@@ -1,9 +1,6 @@
 #ifndef __TOKENIZATOR_H__
 #define __TOKENIZATOR_H__
 
-#include <iostream>
-#include <list>
-
 #include "token.h"
 
 namespace s21 {

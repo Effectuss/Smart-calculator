@@ -35,8 +35,6 @@ set(PROJECT_SOURCES
         ./view/graphView.h
         ./view/graphView.cc
         ./view/graphView.ui
-        ./model/graphBuilder.cc
-        ./model/graphBuilder.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
