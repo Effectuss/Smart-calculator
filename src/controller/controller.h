@@ -8,7 +8,7 @@ class Controller {
  public:
   Controller(Model *model) : model_{model} {};
   double CalculateMath(std::string &str_from_label, double &x);
-  void PrintZZZ();
+
 
  private:
   Model *model_;
