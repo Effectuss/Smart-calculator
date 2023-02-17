@@ -11,9 +11,7 @@ class Model {
   double GetResultMathExpression(std::string& str_from_label, double& x) {
     return this->math_calc_.ShuntingYard(str_from_label, x);
   }
-
   MathCalc& GetMathCalc() { return this->math_calc_; }
-  void PrintASD() { qDebug() << "ABOBA";}
 
  private:
   MathCalc math_calc_;

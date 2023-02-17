@@ -17,10 +17,9 @@ class GraphView : public QWidget
 
 public:
     explicit GraphView(QWidget *parent = nullptr);
-    void InitWindow(QString &expression_for_graph);
+    void InitWindow(QString expression_for_graph);
     void SetController(Controller *controller);
     void SetDefaultSettings();
-
     void BuildPointsForGraph(QString &expression_for_graph);
     void PaintGraph();
 
