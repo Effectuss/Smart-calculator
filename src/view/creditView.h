@@ -15,7 +15,8 @@ class CreditView : public QWidget
 public:
     explicit CreditView(QWidget *parent = nullptr);
     void SetController(Controller *controller);
-    void InitWindow();
+    void FillDataForCount(CreditCalc::DataForCredit& data_for_credit);
+    void SetDefaultSettings();
     ~CreditView();
 
 protected:
@@ -27,6 +28,7 @@ signals:
 private slots:
     void OnActionCalculateClicked();
     void OnActionCloseClicked();
+    void OnActionClearClicked();
 
 private:
     Ui::CreditView *ui;

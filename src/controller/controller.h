@@ -8,6 +8,7 @@ class Controller {
  public:
   Controller(Model *model) : model_{model} {};
   double CalculateMath(std::string &str_from_label, double &x);
+  void CalculateDataForCredit(CreditCalc::DataForCredit& data_for_credit);
 
 
  private:

@@ -2,7 +2,6 @@
 #define __MATHCALC_H__
 #include <cmath>
 #include <functional>
-#include <iostream>
 #include <list>
 #include <map>
 #include <stack>
