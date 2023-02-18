@@ -174,12 +174,12 @@ color: rgb(0, 0, 0);
        </column>
        <column>
         <property name="text">
-         <string>Interest payment</string>
+         <string>Principal payment</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Principal payment</string>
+         <string>Interest payment</string>
         </property>
        </column>
        <column>
