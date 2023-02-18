@@ -10,6 +10,7 @@
 #include <qcustomplot.h>
 
 #include "graphView.h"
+#include "creditView.h"
 #include "controller.h"
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +35,7 @@ class CalcView : public QMainWindow {
 private slots:
     void OnActionGraphTriggered();
     void OnActionMathTriggered();
+    void OnActionCreditTriggered();
     void AddNotFunction();
     void AddFunction();
     void ClearInputPanel();
@@ -43,6 +45,7 @@ private slots:
 private:
   Ui::CalcView *ui;
   GraphView *graph_window;
+  CreditView *credit_calc;
   Controller *controller_;
   QString input_label_;
   double value_x_;
