@@ -158,7 +158,6 @@ void CalcView::OnActionMathTriggered()
 void CalcView::OnActionCreditTriggered()
 {
     credit_calc->SetController(this->controller_);
-    credit_calc->InitWindow();
     this->hide();
     graph_window->hide();
     credit_calc->show();

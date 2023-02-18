@@ -27,30 +27,17 @@ color: rgb(0, 0, 0);
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelInterestRate">
-       <property name="text">
-        <string>Interest rate</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QDoubleSpinBox" name="valueInterestRate">
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="minimum">
-        <double>0.010000000000000</double>
-       </property>
-       <property name="maximum">
-        <double>999.000000000000000</double>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QLabel" name="labelCreditTerm">
        <property name="text">
         <string>Credit term (month)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" rowspan="2">
+      <widget class="QLabel" name="TypeOfMonthlyPayments">
+       <property name="text">
+        <string>Type of monthly payments</string>
        </property>
       </widget>
      </item>
@@ -83,29 +70,13 @@ color: rgb(0, 0, 0);
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QRadioButton" name="setAnnuity">
-       <property name="autoFillBackground">
-        <bool>false</bool>
+     <item row="7" column="0" colspan="2">
+      <widget class="Line" name="beautifulTwo">
+       <property name="styleSheet">
+        <string notr="true">background-color: #cb1a21;</string>
        </property>
-       <property name="text">
-        <string>Annuity</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QTableWidget" name="tableForCredit">
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
-       </property>
-       <property name="autoScroll">
-        <bool>true</bool>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
@@ -113,30 +84,6 @@ color: rgb(0, 0, 0);
       <widget class="QLabel" name="labelAmountOfCredit">
        <property name="text">
         <string>Amount of credit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QRadioButton" name="setDifferentiat">
-       <property name="text">
-        <string>Differentiated</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QPushButton" name="actionCalculate">
-       <property name="text">
-        <string>Сalculate</string>
-       </property>
-       <property name="shortcut">
-        <string>Return</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" rowspan="2">
-      <widget class="QLabel" name="TypeOfMonthlyPayments">
-       <property name="text">
-        <string>Type of monthly payments</string>
        </property>
       </widget>
      </item>
@@ -153,20 +100,136 @@ color: rgb(0, 0, 0);
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
-      <widget class="QPushButton" name="actionClose">
-       <property name="text">
-        <string>Close</string>
+     <item row="2" column="1">
+      <widget class="QDoubleSpinBox" name="valueInterestRate">
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="minimum">
+        <double>0.010000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>999.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.010000000000000</double>
        </property>
       </widget>
      </item>
-     <item row="7" column="0" colspan="2">
-      <widget class="Line" name="beautifulTwo">
-       <property name="styleSheet">
-        <string notr="true">background-color: #cb1a21;</string>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelInterestRate">
+       <property name="text">
+        <string>Interest rate</string>
        </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+      </widget>
+     </item>
+     <item row="6" column="0" colspan="2">
+      <widget class="QTableWidget" name="tableForCredit">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       </property>
+       <property name="autoScroll">
+        <bool>true</bool>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>142</number>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>142</number>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string> Pay per month</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Interest payment</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Principal payment</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Balance owed</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QRadioButton" name="setDifferentiat">
+       <property name="text">
+        <string>Differentiated</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QRadioButton" name="setAnnuity">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Annuity</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QPushButton" name="actionCalculate">
+       <property name="text">
+        <string>Сalculate</string>
+       </property>
+       <property name="shortcut">
+        <string>Return</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QPushButton" name="actionClear">
+       <property name="text">
+        <string>Clear</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0" colspan="2">
+      <widget class="QPushButton" name="actionClose">
+       <property name="text">
+        <string>Close</string>
        </property>
       </widget>
      </item>

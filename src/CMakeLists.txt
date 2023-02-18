@@ -38,6 +38,8 @@ set(PROJECT_SOURCES
 	./view/creditView.cc
 	./view/creditView.ui
 	./view/creditView.h
+        ./model/creditCalc.cc
+        ./model/creditCalc.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
