@@ -5,7 +5,7 @@
 
 namespace s21 {
 CalcView::CalcView(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView()) {
+    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView()), credit_calc(new CreditView()) {
 
   ui->setupUi(this);
 
@@ -61,6 +61,11 @@ CalcView::CalcView(QWidget *parent)
   // Menu connect
   connect(ui->actionGraph, SIGNAL(triggered()), this, SLOT(OnActionGraphTriggered()));
   connect(ui->actionMath, SIGNAL(triggered()), this, SLOT(OnActionMathTriggered()));
+  connect(ui->actionCredit, SIGNAL(triggered()), this, SLOT(OnActionCreditTriggered()));
+
+  // closeEvent connect
+  connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
+  connect(credit_calc, SIGNAL(showParent()), this, SLOT(show()));
 }
 
 void CalcView::SetController(Controller *controller) {
@@ -135,8 +140,8 @@ void CalcView::OnActionGraphTriggered()
     try {
     graph_window->SetController(this->controller_);
     graph_window->InitWindow(this->input_label_);
-    connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
     this->hide();
+    credit_calc->hide();
     graph_window->show();
     } catch(const std::exception &e) {
         QMessageBox::critical(this, "Warning", "Invalid expression for build grahp");
@@ -145,8 +150,18 @@ void CalcView::OnActionGraphTriggered()
 
 void CalcView::OnActionMathTriggered()
 {
+    credit_calc->hide();
     graph_window->hide();
     this->show();
+}
+
+void CalcView::OnActionCreditTriggered()
+{
+    credit_calc->SetController(this->controller_);
+    credit_calc->InitWindow();
+    this->hide();
+    graph_window->hide();
+    credit_calc->show();
 }
 
 CalcView::~CalcView() { delete ui; }

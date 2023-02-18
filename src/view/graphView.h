@@ -25,7 +25,6 @@ public:
 
     ~GraphView();
 
-
 protected:
     void closeEvent(QCloseEvent *event);
 
