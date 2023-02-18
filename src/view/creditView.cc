@@ -7,16 +7,8 @@ CreditView::CreditView(QWidget *parent) :
     ui(new Ui::CreditView)
 {
     ui->setupUi(this);
-}
-
-void CreditView::SetController(Controller *controller)
-{
-    this->controller_ = controller;
-}
-
-void CreditView::InitWindow()
-{
-
+    connect(ui->actionCalculate, SIGNAL(clicked()), SLOT(OnActionCalculateClicked()));
+    connect(ui->actionClose, SIGNAL(clicked()), SLOT(OnActionCloseClicked()));
 }
 
 CreditView::~CreditView()
@@ -29,4 +21,26 @@ void CreditView::closeEvent(QCloseEvent *event)
     emit showParent();
     this->hide();
 }
+
+void CreditView::SetController(Controller *controller)
+{
+    this->controller_ = controller;
+}
+
+void CreditView::InitWindow()
+{
+
+}
+
+void CreditView::OnActionCalculateClicked()
+{
+    qDebug() << "HELLO";
+}
+
+void CreditView::OnActionCloseClicked()
+{
+    qDebug() << "BB";
+
+}
+
 }

@@ -24,6 +24,10 @@ protected:
 signals:
     void showParent();
 
+private slots:
+    void OnActionCalculateClicked();
+    void OnActionCloseClicked();
+
 private:
     Ui::CreditView *ui;
     Controller *controller_;
