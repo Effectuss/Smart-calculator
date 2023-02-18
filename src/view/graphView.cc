@@ -58,7 +58,7 @@ void GraphView::PaintGraph() {
     ui->graphWidget->graph(0)->setPen(QPen(QColor(ui->colorSet->currentText())));
     ui->graphWidget->graph(0)->setLineStyle(QCPGraph::LineStyle(QCPGraph::lsNone));
     ui->graphWidget->graph(0)->setScatterStyle(
-        QCPScatterStyle(QCPScatterStyle::ssDot, 5.0));
+        QCPScatterStyle(QCPScatterStyle::ssDot, 1.0));
     ui->graphWidget->graph(0)->addData(this->x_points, this->y_points);
     ui->graphWidget->replot();
 }
