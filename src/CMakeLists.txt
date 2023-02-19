@@ -16,30 +16,30 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets PrintSupport)
 
 set(PROJECT_SOURCES
         main.cc
-        ./view/calcView.cc
-        ./view/calcView.h
-        ./view/calcView.ui
+        ./view/math/calcView.cc
+        ./view/math/calcView.h
+        ./view/math/calcView.ui
         ./controller/controller.cc
         ./controller/controller.h
         ./model/model.h
-        ./model/token.h
-        ./model/token.cc
-        ./model/tokenizator.cc
-        ./model/tokenizator.h
-        ./model/validator.h
-        ./model/validator.cc
-        ./model/mathCalc.h
-        ./model/mathCalc.cc
-        ./model/qcustomplot.cpp
-        ./model/qcustomplot.h
-        ./view/graphView.h
-        ./view/graphView.cc
-        ./view/graphView.ui
-	./view/creditView.cc
-	./view/creditView.ui
-	./view/creditView.h
-        ./model/creditCalc.cc
-        ./model/creditCalc.h
+        ./model/math/token.h
+        ./model/math/token.cc
+        ./model/math/tokenizator.cc
+        ./model/math/tokenizator.h
+        ./model/math/validator.h
+        ./model/math/validator.cc
+        ./model/math/mathCalc.h
+        ./model/math/mathCalc.cc
+        ./view/graph/qcustomplot.cpp
+        ./view/graph/qcustomplot.h
+        ./view/graph/graphView.h
+        ./view/graph/graphView.cc
+        ./view/graph/graphView.ui
+	    ./view/credit/creditView.cc
+	    ./view/credit/creditView.ui
+	    ./view/credit/creditView.h
+        ./model/credit/creditCalc.cc
+        ./model/credit/creditCalc.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -71,8 +71,12 @@ target_link_libraries(SmartCalculator PRIVATE Qt${QT_VERSION_MAJOR}::PrintSuppor
 target_include_directories(SmartCalculator 
 PRIVATE 
     controller/
+    model/math
+    model/credit
     model/
-    view/)
+    view/math
+    view/credit
+    view/graph)
 set_target_properties(SmartCalculator PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
