@@ -8,24 +8,32 @@ namespace s21 {
 class CreditCalc {
  public:
   enum TypeOfCredit { kAnnuity = 1, kDifferentiated };
-  enum NameOfColums { kPayPerMonth, kDebtPay, kInterestPay, kResidue };
 
   struct DataForCredit {
-    long double sum_credit;
-    long double amount_month;
-    long double interest_rate;
+    double sum_credit;
+    double amount_month;
+    double interest_rate;
     TypeOfCredit type_credit;
-    std::vector<std::array<long double, 4>> data_for_table;
+    double all_money;
+    double money_for_bank;
+    std::vector<std::array<double, 4>> data_for_table;
   };
 
   void CalculateCredit(CreditCalc::DataForCredit &data_for_credit);
-  void AnnuityCredit(long double &sum_credit, long double &amount_months,
-                     long double &interest_rate,
-                     std::vector<std::array<long double, 4>> data_for_table);
-  void DifferentiatedCredit(
-      long double &sum_credit, long double &amount_months,
-      long double &interest_rate,
-      std::vector<std::array<long double, 4>> data_for_table);
+  void AnnuityCredit(double &sum_credit, double amount_months,
+                     double &interest_rate,
+                     std::vector<std::array<double, 4>> data_for_table);
+  void DifferentiatedCredit(double &sum_credit, double amount_months,
+                            double &interest_rate,
+                            std::vector<std::array<double, 4>> data_for_table);
+
+ private:
+  double pay_per_month_;
+  double after_payment_;
+  double interest_per_month_;
+
+  double pay_by_interest_;
+  double pay_by_main_duty_;
 };
 
 }  // namespace s21
