@@ -1,4 +1,0 @@
-/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build-smartCalc-Desktop_x86_darwin_generic_mach_o_64bit-Release/CMakeFiles/SmartCalculator.dir
-/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build-smartCalc-Desktop_x86_darwin_generic_mach_o_64bit-Release/CMakeFiles/edit_cache.dir
-/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build-smartCalc-Desktop_x86_darwin_generic_mach_o_64bit-Release/CMakeFiles/rebuild_cache.dir
-/Users/englishk/CPP3_SmartCalc_v2.0-0/src/build-smartCalc-Desktop_x86_darwin_generic_mach_o_64bit-Release/CMakeFiles/SmartCalculator_autogen.dir
