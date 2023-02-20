@@ -1,8 +1,5 @@
 #include "creditCalc.h"
 
-#include <QDebug>
-
-#include "iostream"
 namespace s21 {
 
 void CreditCalc::CalculateCredit(DataForCredit &data_for_credit) {

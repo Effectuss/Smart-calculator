@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../model/calcModel.h"
+#include "../model/model.h"
 
 TEST(MathCalculator, expression1) {
   std::string check_str = "3 mod4*(-3.0*sin(4)-cos(0.3))";

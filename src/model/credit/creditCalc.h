@@ -20,6 +20,8 @@ class CreditCalc {
   };
 
   void CalculateCredit(CreditCalc::DataForCredit &data_for_credit);
+
+ protected:
   void AnnuityCredit(double &sum_credit, double amount_months,
                      double &interest_rate,
                      std::vector<std::array<double, 4>> &data_for_table);
@@ -30,7 +32,6 @@ class CreditCalc {
   void AnnuityAllMoneyAndBankMoney(DataForCredit &data_for_credit);
   void DifferentiatedBankMoney(DataForCredit &data_for_credit);
 
- private:
   double pay_per_month_;
   double after_payment_;
   double interest_per_month_;
