@@ -2,9 +2,9 @@
 
 namespace s21 {
 void Validator::Validation(std::list<Token>& tokens) {
-  int count_open_parenthesis = 0;
-  int count_close_parenthesis = 0;
   if (Validator::ValidForFirst(tokens.front())) {
+    int count_open_parenthesis = 0;
+    int count_close_parenthesis = 0;
     auto current = tokens.begin();
     if (current->IsOpenParenthesis()) ++count_open_parenthesis;
     auto previous = tokens.begin();

@@ -4,7 +4,7 @@ namespace s21 {
 
 std::list<Token>& Tokenizator::GetListToken() { return this->l_tokens_; }
 
-void Tokenizator::ToTokens(std::string& expression, double& x) {
+void Tokenizator::ToTokens(std::string& expression, const double& x) {
   this->l_tokens_.clear();
   for (std::size_t i = 0; i < expression.length(); ++i) {
     if (TokenizationX(expression, x, i)) continue;
@@ -19,8 +19,8 @@ void Tokenizator::ToTokens(std::string& expression, double& x) {
   }
 }
 
-bool Tokenizator::TokenizationX(std::string& expression, double& x,
-                                std::size_t& i) {
+bool Tokenizator::TokenizationX(const std::string& expression, const double& x,
+                                const std::size_t& i) {
   if (expression[i] == 'x') {
     this->l_tokens_.push_back(
         Token(Token::TypeTokens::kNumber, std::to_string(x)));
@@ -104,7 +104,7 @@ bool Tokenizator::TokenizationFunction(std::string& expression,
   return false;
 }
 
-bool Tokenizator::TokenizationOpenParen(std::string& expression,
+bool Tokenizator::TokenizationOpenParen(const std::string& expression,
                                         std::size_t& i) {
   if (expression[i] == '(') {
     this->l_tokens_.push_back(
@@ -115,7 +115,7 @@ bool Tokenizator::TokenizationOpenParen(std::string& expression,
   return false;
 }
 
-bool Tokenizator::TokenizationCloseParen(std::string& expression,
+bool Tokenizator::TokenizationCloseParen(const std::string& expression,
                                          std::size_t& i) {
   if (expression[i] == ')') {
     this->l_tokens_.push_back(
@@ -128,16 +128,18 @@ bool Tokenizator::TokenizationCloseParen(std::string& expression,
 
 bool Tokenizator::IsCorrectFunction(const std::string& expression,
                                     const std::vector<std::string>& function) {
-  for (const auto& el : function) {
-    if (el == expression) return false;
+  if (std::any_of(
+          function.cbegin(), function.cend(),
+          [&expression](const std::string& el) { return el == expression; })) {
+    return false;
+  } else {
+    throw std::invalid_argument("Name of available functions is incorrect");
   }
-  throw std::invalid_argument("Name of available functions is incorrect");
-  return true;
 }
 
 bool Tokenizator::IsCorrectNumber(const std::string& number) {
   size_t pos;
-  std::stod(number, &pos);
+  [[maybe_unused]] double tmp = std::stod(number, &pos);
   if (pos == number.length()) {
     return false;
   } else {

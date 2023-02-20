@@ -1,50 +1,50 @@
 #ifndef GRAPHVIEW_H
 #define GRAPHVIEW_H
 
-#include <QWidget>
 #include <QDoubleSpinBox>
 #include <QVector>
+#include <QWidget>
+
 #include "controller.h"
 #include "qcustomplot.h"
 
 namespace Ui {
 class GraphView;
 }
-namespace s21{
-class GraphView : public QWidget
-{
-    Q_OBJECT
+namespace s21 {
+class GraphView : public QWidget {
+  Q_OBJECT
 
-public:
-    explicit GraphView(QWidget *parent = nullptr);
-    void InitWindow(QString expression_for_graph);
-    void SetController(Controller *controller);
-    void SetDefaultSettings();
-    void BuildPointsForGraph(QString &expression_for_graph);
-    void PaintGraph();
+ public:
+  explicit GraphView(QWidget *parent = nullptr);
+  void InitWindow(QString expression_for_graph);
+  void SetController(Controller *controller);
+  void SetDefaultSettings();
+  void BuildPointsForGraph(QString &expression_for_graph);
+  void PaintGraph();
 
-    ~GraphView();
+  ~GraphView();
 
-protected:
-    void closeEvent(QCloseEvent *event);
+ protected:
+  void closeEvent(QCloseEvent *event);
 
-signals:
-    void showParent();
+ signals:
+  void showParent();
 
-private slots:
-    void OnActionBuild();
-    void OnActionClose();
-    void OnActionClear();
+ private slots:
+  void OnActionBuild();
+  void OnActionClose();
+  void OnActionClear();
 
-private:
-    Ui::GraphView *ui;
-    Controller *controller_;
-    QVector<double> x_points;
-    QVector<double> y_points;
-    double step;
-    double x_begin;
-    double x_end;
+ private:
+  Ui::GraphView *ui;
+  Controller *controller_;
+  QVector<double> x_points;
+  QVector<double> y_points;
+  double step;
+  double x_begin;
+  double x_end;
 };
-}
+}  // namespace s21
 
-#endif // GRAPHVIEW_H
+#endif  // GRAPHVIEW_H

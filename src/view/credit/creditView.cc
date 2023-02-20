@@ -73,8 +73,8 @@ void CreditView::OnActionCalculateClicked() {
 }
 
 void CreditView::OnActionCloseClicked() {
-  emit showParent();
   this->SetDefaultSettings();
+  emit showParent();
   this->close();
 }
 

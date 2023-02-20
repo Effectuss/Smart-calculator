@@ -1,8 +1,8 @@
 CC = g++
-CFLAGS =-Wall -Wextra -Werror -std=c++17
+CFLAGS = -Wall -Wextra -Werror -std=c++17
 OS=$(shell uname)
 
-TARGET = calc_test
+TARGET = tests.out
 DIRS = $(addprefix model/, credit math)
 
 SOURCES = $(wildcard $(addsuffix /*.cc, $(DIRS)))
@@ -12,17 +12,17 @@ OBJECTS = $(SOURCES:.cc=.o)
 GOBJECTS = $(addsuffix  _gcov.o, $(basename $(OBJECTS)))
 HEADERS = $(wildcard $(addsuffix /*.h, $(DIRS))) controller/controller.h
 
-LDFLAGS := -lgtest -lgtest_main
-VFLAG := --leak-check=full --show-leak-kinds=all -s
-CFLAGS_GCOV := --coverage
-CPPCHECKFLAG := --enable=all --suppress=missingIncludeSystem --language=c++ --std=c++17
+LDFLAGS = -lgtest -lgtest_main
+VFLAG = --leak-check=full --show-leak-kinds=all -s
+CFLAGS_GCOV = --coverage
+CPPCHECKFLAG = --enable=all --suppress=unusedFunction --suppress=missingInclude --suppress=unknownMacro --suppress=unusedStructMember --language=c++ --std=c++17
 
 ifeq ($(OS), Linux)
-LEAKS := leaks --atExit -- ./$(TARGET)
+LEAKS = valgrind $(VFLAG) ./$(TARGET)
+LDFLAGS += -lpthread -L/usr/lib
 endif
 ifeq ($(OS), Darwin)
-LEAKS := valgrind $(VFLAG) ./$(TARGET)
-LDFLAGS += -lpthread -L/usr/lib
+LEAKS = leaks --atExit -- ./$(TARGET)
 endif
 
 all: install
@@ -34,25 +34,19 @@ all: install
 	$(CC) $(CFLAGS) -c $< -o $@ $(CFLAGS_GCOV)
 
 install: uninstall
-	mkdir -p build
+	@mkdir -p build
 	cd build; cmake ..; make
-	mkdir -p app
-	cp -r ./build/SmartCalculator.app app/
+	@mkdir -p app
+	@cp -r ./build/SmartCalculator.app app/
 
 uninstall:
-	rm -rf app
-
-clean:
-	@rm -rf */*.o */*/*.o *.o
-	@rm -rf */*.gcno */*/*.gcno *.gcno
-	@rm -rf build
+	@rm -rf app
 
 tests: $(OBJECTS) $(OBJECTS_TEST)
 	$(CC) $(CFLAGS) $^ -o tests.out $(LDFLAGS)
 	./tests.out
 
 dvi:
-	@echo $(GOBJECTS)
 
 dist:
 
@@ -61,6 +55,19 @@ gcov_report: $(GOBJECTS) $(OBJECTS_TEST)
 	lcov --capture --directory . --output-file main_coverage.info
 	genhtml  main_coverage.info --output-directory lcov_report
 
-check:
+check: tests
+	@cppcheck $(CPPCHECKFLAG) */*.cc */*/*.cc *.cc  */*.h */*/*.h *.h
+	@-cp ../materials/linters/.clang-format .
+	@clang-format -n */*.cc */*/*.cc *.cc  $(HEADERS) */*/*.ui
+	@make clean
 
-leaks:
+leaks: tests
+	$(LEAKS)
+	@make clean
+
+clean:
+	@rm -rf */*.o */*/*.o *.o
+	@rm -rf */*.gcno */*/*.gcno *.gcno
+	@rm -rf build
+	@rm -rf .clang-format
+	@rm -rf tests.out
