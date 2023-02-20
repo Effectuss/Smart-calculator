@@ -50,9 +50,10 @@ dvi:
 
 dist:
 
-gcov_report: $(GOBJECTS) $(OBJECTS_TEST)
+lcov_report: $(GOBJECTS) $(OBJECTS_TEST)
+	$(CC) $(CFLAGS) $^ -o tests.out $(LDFLAGS) $(CFLAGS_GCOV)
 	./tests.out
-	lcov --capture --directory . --output-file main_coverage.info
+	lcov --no-external --capture --directory . --output-file main_coverage.info
 	genhtml  main_coverage.info --output-directory lcov_report
 
 check: tests
@@ -68,6 +69,9 @@ leaks: tests
 clean:
 	@rm -rf */*.o */*/*.o *.o
 	@rm -rf */*.gcno */*/*.gcno *.gcno
+	@rm -rf */*.gcda */*/*.gcda *.gcda
+	@rm -rf main_coverage.info
 	@rm -rf build
 	@rm -rf .clang-format
 	@rm -rf tests.out
+	@rm -rf lcov_report
