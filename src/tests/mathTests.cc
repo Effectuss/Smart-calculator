@@ -293,6 +293,15 @@ TEST(MathCalculator, expression29) {
   ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
 }
 
+TEST(MathCalculator, expression30) {
+  std::string check_str = "1+3";
+  s21::Model model;
+  double x = 33.33;
+  double result = model.GetResultMathExpression(check_str, x);
+  double result_c_plus_plus = 1 + 3;
+  ASSERT_DOUBLE_EQ(result, result_c_plus_plus);
+}
+
 TEST(ExeptionrTest, exeption1) {
   try {
     std::string input_str = "3---4***23";

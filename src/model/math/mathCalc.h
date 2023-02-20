@@ -13,9 +13,7 @@
 namespace s21 {
 class MathCalc {
  public:
-  double ShuntingYard(std::string& str_from_label, double& x);
-  Tokenizator& GetTokenizator() { return this->tokenizator_; }
-  Validator& GetValidator() { return this->validator_; }
+  double ShuntingYard(std::string& str_from_label, const double& x);
   static void CountValue(std::stack<Token>& stack_operations,
                          std::stack<double>& stack_number);
 

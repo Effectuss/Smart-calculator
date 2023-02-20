@@ -2,14 +2,12 @@
 #define __CALCCONTROLLER_H__
 
 #include "model.h"
-#include <QDebug>
 namespace s21 {
 class Controller {
  public:
-  Controller(Model *model) : model_{model} {};
+  explicit Controller(Model *model) : model_{model} {};
   double CalculateMath(std::string &str_from_label, double &x);
-  void CalculateDataForCredit(CreditCalc::DataForCredit& data_for_credit);
-
+  void CalculateDataForCredit(CreditCalc::DataForCredit &data_for_credit);
 
  private:
   Model *model_;

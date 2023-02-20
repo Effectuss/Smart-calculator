@@ -1,17 +1,18 @@
 #ifndef __CALCVIEW_H__
 #define __CALCVIEW_H__
 
+#include <qcustomplot.h>
+
 #include <QDebug>
 #include <QDialog>
 #include <QLabel>
 #include <QMainWindow>
-#include <QWidget>
 #include <QMessageBox>
-#include <qcustomplot.h>
+#include <QWidget>
 
-#include "graphView.h"
-#include "creditView.h"
 #include "controller.h"
+#include "creditView.h"
+#include "graphView.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,23 +27,21 @@ class CalcView : public QMainWindow {
  public:
   CalcView(QWidget *parent = nullptr);
   void SetController(Controller *controller);
-  Controller* GetController() {return this->controller_;}
   void CheckAndChangeStyleLabel();
   void AddFunctionOrNot(QPushButton *button, bool is_func);
   ~CalcView();
 
+ private slots:
+  void OnActionGraphTriggered();
+  void OnActionMathTriggered();
+  void OnActionCreditTriggered();
+  void AddNotFunction();
+  void AddFunction();
+  void ClearInputPanel();
+  void DeleteOneSymb();
+  void StartCalculacte();
 
-private slots:
-    void OnActionGraphTriggered();
-    void OnActionMathTriggered();
-    void OnActionCreditTriggered();
-    void AddNotFunction();
-    void AddFunction();
-    void ClearInputPanel();
-    void DeleteOneSymb();
-    void StartCalculacte();
-
-private:
+ private:
   Ui::CalcView *ui;
   GraphView *graph_window;
   CreditView *credit_calc;

@@ -1,18 +1,21 @@
 #ifndef __TOKENIZATOR_H__
 #define __TOKENIZATOR_H__
 
+#include <algorithm>
+
 #include "token.h"
 
 namespace s21 {
 class Tokenizator {
  public:
-  void ToTokens(std::string& expression, double& x);
+  void ToTokens(std::string& expression, const double& x);
   bool TokenizationNumber(std::string& expression, std::size_t& i);
-  bool TokenizationX(std::string& expression, double& x, std::size_t& i);
+  bool TokenizationX(const std::string& expression, const double& x,
+                     const std::size_t& i);
   bool TokenizationOperator(std::string& expression, std::size_t& i);
   bool TokenizationFunction(std::string& expression, std::size_t& i);
-  bool TokenizationOpenParen(std::string& expression, std::size_t& i);
-  bool TokenizationCloseParen(std::string& expression, std::size_t& i);
+  bool TokenizationOpenParen(const std::string& expression, std::size_t& i);
+  bool TokenizationCloseParen(const std::string& expression, std::size_t& i);
 
   static bool IsCorrectFunction(const std::string& expression,
                                 const std::vector<std::string>& function);

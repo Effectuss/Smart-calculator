@@ -1,10 +1,10 @@
 #ifndef __TOKEN_H__
 #define __TOKEN_H__
 
-#include <string>
-#include <vector>
 #include <list>
 #include <stdexcept>
+#include <string>
+#include <vector>
 
 namespace s21 {
 class Token {

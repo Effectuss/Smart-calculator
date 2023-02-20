@@ -2,11 +2,12 @@
 
 #include "ui_calcView.h"
 
-
 namespace s21 {
 CalcView::CalcView(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView()), credit_calc(new CreditView()) {
-
+    : QMainWindow(parent),
+      ui(new Ui::CalcView),
+      graph_window(new GraphView()),
+      credit_calc(new CreditView()) {
   ui->setupUi(this);
 
   // Solo symb
@@ -59,9 +60,12 @@ CalcView::CalcView(QWidget *parent)
   connect(ui->actionDeleteOne, SIGNAL(clicked()), this, SLOT(DeleteOneSymb()));
 
   // Menu connect
-  connect(ui->actionGraph, SIGNAL(triggered()), this, SLOT(OnActionGraphTriggered()));
-  connect(ui->actionMath, SIGNAL(triggered()), this, SLOT(OnActionMathTriggered()));
-  connect(ui->actionCredit, SIGNAL(triggered()), this, SLOT(OnActionCreditTriggered()));
+  connect(ui->actionGraph, SIGNAL(triggered()), this,
+          SLOT(OnActionGraphTriggered()));
+  connect(ui->actionMath, SIGNAL(triggered()), this,
+          SLOT(OnActionMathTriggered()));
+  connect(ui->actionCredit, SIGNAL(triggered()), this,
+          SLOT(OnActionCreditTriggered()));
 
   // closeEvent connect
   connect(graph_window, SIGNAL(showParent()), this, SLOT(show()));
@@ -135,32 +139,30 @@ void CalcView::StartCalculacte() {
   }
 }
 
-void CalcView::OnActionGraphTriggered()
-{
-    try {
+void CalcView::OnActionGraphTriggered() {
+  try {
     graph_window->SetController(this->controller_);
     graph_window->InitWindow(this->input_label_);
     this->hide();
     credit_calc->hide();
     graph_window->show();
-    } catch(const std::exception &e) {
-        QMessageBox::critical(this, "Warning", "Invalid expression for build grahp");
-    }
+  } catch (const std::exception &e) {
+    QMessageBox::critical(this, "Warning",
+                          "Invalid expression for build grahp");
+  }
 }
 
-void CalcView::OnActionMathTriggered()
-{
-    credit_calc->hide();
-    graph_window->hide();
-    this->show();
+void CalcView::OnActionMathTriggered() {
+  credit_calc->hide();
+  graph_window->hide();
+  this->show();
 }
 
-void CalcView::OnActionCreditTriggered()
-{
-    credit_calc->SetController(this->controller_);
-    this->hide();
-    graph_window->hide();
-    credit_calc->show();
+void CalcView::OnActionCreditTriggered() {
+  credit_calc->SetController(this->controller_);
+  this->hide();
+  graph_window->hide();
+  credit_calc->show();
 }
 
 CalcView::~CalcView() { delete ui; }
