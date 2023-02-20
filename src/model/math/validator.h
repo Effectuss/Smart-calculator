@@ -2,6 +2,7 @@
 #define __VALIDATOR_H__
 
 #include "tokenizator.h"
+
 namespace s21 {
 class Validator {
  public:

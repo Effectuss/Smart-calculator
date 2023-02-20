@@ -14,8 +14,8 @@ void Tokenizator::ToTokens(std::string& expression, double& x) {
     if (TokenizationOperator(expression, i)) continue;
     if (TokenizationFunction(expression, i)) continue;
   }
-  if(this->l_tokens_.empty()) {
-      this->l_tokens_.push_back(Token(Token::TypeTokens::kNumber, "0.0"));
+  if (this->l_tokens_.empty()) {
+    this->l_tokens_.push_back(Token(Token::TypeTokens::kNumber, "0.0"));
   }
 }
 
@@ -143,6 +143,7 @@ bool Tokenizator::IsCorrectNumber(const std::string& number) {
   } else {
     throw std::invalid_argument("The number you entered is incorrect");
   }
+  return true;
 }
 
 bool Tokenizator::IsFunction(const char& symb) {

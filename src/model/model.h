@@ -1,10 +1,8 @@
 #ifndef __CALCMODEL_H__
 #define __CALCMODEL_H__
 
-#include <QDebug>
-
-#include "creditCalc.h"
-#include "mathCalc.h"
+#include "./credit/creditCalc.h"
+#include "./math/mathCalc.h"
 
 namespace s21 {
 
@@ -14,7 +12,7 @@ class Model {
     return this->math_calc_.ShuntingYard(str_from_label, x);
   }
   MathCalc& GetMathCalc() { return this->math_calc_; }
-  CreditCalc& GetCreditCalc() {return this->credit_calc_; }
+  CreditCalc& GetCreditCalc() { return this->credit_calc_; }
 
  private:
   MathCalc math_calc_;
