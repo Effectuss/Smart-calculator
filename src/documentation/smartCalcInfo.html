@@ -1,0 +1,75 @@
+﻿<h1 id="smart-calc-">Smart calc С++</h1>
+<h2 id="about-project">About project</h2>
+<p>In this project, a scientific calculator is implemented that can perform calculations with arbitrary bracket
+    expressions, as well as calculate the expression with substitution of a number together with &quot;x&quot;.
+    In addition, the construction of graphs of arbitrary mathematical expressions is implemented.
+    The bonus is made by a loan calculator that allows you to calculate a loan in two formats in annuity,
+    differentiated.</p>
+<h2 id="implementation-details">Implementation details</h2>
+<p>All calculators have a graphical interface, the code is also written using the C ++ language and built according to
+    the MVC principle (model, view, controller). All expressions are validated and processed in the model. The project
+    is unit tested and has full coverage.</p>
+<h2 id="math-scientific-calculator">Math(scientific) calculator</h2>
+<p>Calculator Features
+    Bracketed arithmetic expressions in infix notation must support the following arithmetic
+    operations(+,-,/,*,mod,^,unary - and unary +) and mathematical functions</p>
+<table>
+    <thead>
+        <tr>
+            <th>Function description</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Calculates cosine</td>
+            <td>cos(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates the sine</td>
+            <td>sin(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates tangent</td>
+            <td>tan(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates the arc cosine</td>
+            <td>acos(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates arcsine</td>
+            <td>asin(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates arc tangent</td>
+            <td>atan(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates the square root</td>
+            <td>sqrt(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates the natural logarithm</td>
+            <td>log(x)</td>
+        </tr>
+        <tr>
+            <td>Calculates the decimal logarithm</td>
+            <td>log(x)</td>
+        </tr>
+    </tbody>
+</table>
+<h2 id="graph">Graph</h2>
+<p>With this application, you can draw graphs with a range of definitions from -1,000,000 to 1,000,000 and a range of
+    values ​​from -1,000,000 to 1,000,000.</p>
+<h2 id="credit-calc">Credit calc</h2>
+<p>The loan calculator allows you to calculate a loan for different types of monthly payments: annuity and
+    differentiated.</p>
+<p><strong>Annuity</strong> - represents equal monthly amounts throughout the entire term of the loan.</p>
+<p><strong>Differentiated</strong> - the amount of the monthly payment decreases by the end of the loan term.</p>
+<p>The interface of the calculator is intuitive and even an inexperienced user will be able to correctly calculate his
+    monthly payment and the final overpayment, thereby choosing the best option for himself.</p>
+<h2 id="project-build-instructions">Project build instructions</h2>
+<p>On the PC should be qt 6 version. Assembly is done using cmake.
+    The project implemented a Makefile with targets (all, install, uninstall, clean, dvi, dist, tests)
+    To install the application, the command in the src directory is &quot;make install&quot;</p>
