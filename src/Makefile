@@ -46,8 +46,8 @@ tests: $(OBJECTS) $(OBJECTS_TEST)
 	$(CC) $(CFLAGS) $^ -o tests.out $(LDFLAGS)
 	./tests.out
 
-# dvi:
-# 	open ./documentation/smartCalcInfo.html
+dvi:
+	open ./documentation/smartCalcInfo.html
 
 dist:
 	tar -czf smartCalc.tar ./*
