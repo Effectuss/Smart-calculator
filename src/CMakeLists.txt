@@ -35,7 +35,7 @@ set(PROJECT_SOURCES
         ./view/graph/graphView.h
         ./view/graph/graphView.cc
         ./view/graph/graphView.ui
-	    ./view/credit/creditView.cc
+            ./view/credit/creditView.cc
 	    ./view/credit/creditView.ui
 	    ./view/credit/creditView.h
         ./model/credit/creditCalc.cc

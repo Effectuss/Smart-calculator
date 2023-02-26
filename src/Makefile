@@ -46,9 +46,11 @@ tests: $(OBJECTS) $(OBJECTS_TEST)
 	$(CC) $(CFLAGS) $^ -o tests.out $(LDFLAGS)
 	./tests.out
 
-dvi:
+# dvi:
+# 	open ./documentation/smartCalcInfo.html
 
 dist:
+	tar -czf smartCalc.tar ./*
 
 lcov_report: $(GOBJECTS) $(OBJECTS_TEST)
 	$(CC) $(CFLAGS) $^ -o tests.out $(LDFLAGS) $(CFLAGS_GCOV)
@@ -75,3 +77,4 @@ clean:
 	@rm -rf .clang-format
 	@rm -rf tests.out
 	@rm -rf lcov_report
+	@rm -rf smartCalc.tar

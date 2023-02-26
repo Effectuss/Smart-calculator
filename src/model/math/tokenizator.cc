@@ -5,6 +5,7 @@ namespace s21 {
 std::list<Token>& Tokenizator::GetListToken() { return this->l_tokens_; }
 
 void Tokenizator::ToTokens(std::string& expression, const double& x) {
+  expression.push_back('\n');
   this->l_tokens_.clear();
   for (std::size_t i = 0; i < expression.length(); ++i) {
     if (TokenizationX(expression, x, i)) continue;
@@ -14,6 +15,7 @@ void Tokenizator::ToTokens(std::string& expression, const double& x) {
     if (TokenizationOperator(expression, i)) continue;
     if (TokenizationFunction(expression, i)) continue;
   }
+  expression.pop_back();
   if (this->l_tokens_.empty()) {
     this->l_tokens_.push_back(Token(Token::TypeTokens::kNumber, "0.0"));
   }
@@ -31,7 +33,7 @@ bool Tokenizator::TokenizationX(const std::string& expression, const double& x,
 
 bool Tokenizator::TokenizationNumber(std::string& expression, std::size_t& i) {
   if (isdigit(expression[i]) || expression[i] == '.') {
-    auto tmp_move_along = expression.find_first_not_of(".0123456789e", i);
+    int tmp_move_along = expression.find_first_not_of(".0123456789e", i);
 
     if (expression[tmp_move_along - 1] == 'e') {
       while (expression[tmp_move_along] == '-' ||
@@ -57,7 +59,7 @@ bool Tokenizator::TokenizationNumber(std::string& expression, std::size_t& i) {
 bool Tokenizator::TokenizationOperator(std::string& expression,
                                        std::size_t& i) {
   if (!Tokenizator::IsOperator(expression[i])) {
-    auto tmp_move_along = expression.find_first_not_of("+-^*/mod", i);
+    int tmp_move_along = expression.find_first_not_of("+-^*/mod", i);
     std::string token = expression.substr(i, tmp_move_along - i);
     if (token == "mod" || token == "/" || token == "*") {
       this->l_tokens_.push_back(
@@ -92,7 +94,7 @@ bool Tokenizator::TokenizationOperator(std::string& expression,
 bool Tokenizator::TokenizationFunction(std::string& expression,
                                        std::size_t& i) {
   if (!Tokenizator::IsFunction(expression[i])) {
-    auto tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
+    int tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
     if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
                                         kFunction_)) {
       this->l_tokens_.push_back(Token(Token::TypeTokens::kFunction,
