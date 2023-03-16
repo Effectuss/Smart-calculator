@@ -1,19 +1,23 @@
 #include "tokenizator.h"
 
-namespace s21 {
+std::list<Token> &Tokenizator::GetListToken() { return this->l_tokens_; }
 
-std::list<Token>& Tokenizator::GetListToken() { return this->l_tokens_; }
-
-void Tokenizator::ToTokens(std::string& expression, const double& x) {
+void Tokenizator::ToTokens(std::string &expression, const double &x) {
   expression.push_back('\n');
   this->l_tokens_.clear();
   for (std::size_t i = 0; i < expression.length(); ++i) {
-    if (TokenizationX(expression, x, i)) continue;
-    if (TokenizationNumber(expression, i)) continue;
-    if (TokenizationOpenParen(expression, i)) continue;
-    if (TokenizationCloseParen(expression, i)) continue;
-    if (TokenizationOperator(expression, i)) continue;
-    if (TokenizationFunction(expression, i)) continue;
+    if (TokenizationX(expression, x, i))
+      continue;
+    if (TokenizationNumber(expression, i))
+      continue;
+    if (TokenizationOpenParen(expression, i))
+      continue;
+    if (TokenizationCloseParen(expression, i))
+      continue;
+    if (TokenizationOperator(expression, i))
+      continue;
+    if (TokenizationFunction(expression, i))
+      continue;
   }
   expression.pop_back();
   if (this->l_tokens_.empty()) {
@@ -21,8 +25,8 @@ void Tokenizator::ToTokens(std::string& expression, const double& x) {
   }
 }
 
-bool Tokenizator::TokenizationX(const std::string& expression, const double& x,
-                                const std::size_t& i) {
+bool Tokenizator::TokenizationX(const std::string &expression, const double &x,
+                                const std::size_t &i) {
   if (expression[i] == 'x') {
     this->l_tokens_.push_back(
         Token(Token::TypeTokens::kNumber, std::to_string(x)));
@@ -31,7 +35,7 @@ bool Tokenizator::TokenizationX(const std::string& expression, const double& x,
   return false;
 }
 
-bool Tokenizator::TokenizationNumber(std::string& expression, std::size_t& i) {
+bool Tokenizator::TokenizationNumber(std::string &expression, std::size_t &i) {
   if (isdigit(expression[i]) || expression[i] == '.') {
     int tmp_move_along = expression.find_first_not_of(".0123456789e", i);
 
@@ -56,8 +60,8 @@ bool Tokenizator::TokenizationNumber(std::string& expression, std::size_t& i) {
   return false;
 }
 
-bool Tokenizator::TokenizationOperator(std::string& expression,
-                                       std::size_t& i) {
+bool Tokenizator::TokenizationOperator(std::string &expression,
+                                       std::size_t &i) {
   if (!Tokenizator::IsOperator(expression[i])) {
     int tmp_move_along = expression.find_first_not_of("+-^*/mod", i);
     std::string token = expression.substr(i, tmp_move_along - i);
@@ -91,8 +95,8 @@ bool Tokenizator::TokenizationOperator(std::string& expression,
   return false;
 }
 
-bool Tokenizator::TokenizationFunction(std::string& expression,
-                                       std::size_t& i) {
+bool Tokenizator::TokenizationFunction(std::string &expression,
+                                       std::size_t &i) {
   if (!Tokenizator::IsFunction(expression[i])) {
     int tmp_move_along = expression.find_first_not_of("cosinatlgqr", i) - i;
     if (!Tokenizator::IsCorrectFunction(expression.substr(i, tmp_move_along),
@@ -106,8 +110,8 @@ bool Tokenizator::TokenizationFunction(std::string& expression,
   return false;
 }
 
-bool Tokenizator::TokenizationOpenParen(const std::string& expression,
-                                        std::size_t& i) {
+bool Tokenizator::TokenizationOpenParen(const std::string &expression,
+                                        std::size_t &i) {
   if (expression[i] == '(') {
     this->l_tokens_.push_back(
         Token(Token::TypeTokens::kOpenParenthesis, "(", 0));
@@ -117,8 +121,8 @@ bool Tokenizator::TokenizationOpenParen(const std::string& expression,
   return false;
 }
 
-bool Tokenizator::TokenizationCloseParen(const std::string& expression,
-                                         std::size_t& i) {
+bool Tokenizator::TokenizationCloseParen(const std::string &expression,
+                                         std::size_t &i) {
   if (expression[i] == ')') {
     this->l_tokens_.push_back(
         Token(Token::TypeTokens::kCloseParenthesis, ")", 0));
@@ -128,18 +132,18 @@ bool Tokenizator::TokenizationCloseParen(const std::string& expression,
   return false;
 }
 
-bool Tokenizator::IsCorrectFunction(const std::string& expression,
-                                    const std::vector<std::string>& function) {
+bool Tokenizator::IsCorrectFunction(const std::string &expression,
+                                    const std::vector<std::string> &function) {
   if (std::any_of(
           function.cbegin(), function.cend(),
-          [&expression](const std::string& el) { return el == expression; })) {
+          [&expression](const std::string &el) { return el == expression; })) {
     return false;
   } else {
     throw std::invalid_argument("Name of available functions is incorrect");
   }
 }
 
-bool Tokenizator::IsCorrectNumber(const std::string& number) {
+bool Tokenizator::IsCorrectNumber(const std::string &number) {
   size_t pos;
   [[maybe_unused]] double tmp = std::stod(number, &pos);
   if (pos == number.length()) {
@@ -150,16 +154,15 @@ bool Tokenizator::IsCorrectNumber(const std::string& number) {
   return true;
 }
 
-bool Tokenizator::IsFunction(const char& symb) {
-  if (symb >= 'a' && symb <= 'z' && symb != 'm') return false;
+bool Tokenizator::IsFunction(const char &symb) {
+  if (symb >= 'a' && symb <= 'z' && symb != 'm')
+    return false;
   return true;
 };
 
-bool Tokenizator::IsOperator(const char& symb) {
+bool Tokenizator::IsOperator(const char &symb) {
   if (symb == '+' || symb == '-' || symb == '*' || symb == '/' || symb == 'm' ||
       symb == '^')
     return false;
   return true;
 }
-
-}  // namespace s21

@@ -1,12 +1,12 @@
 #include "validator.h"
 
-namespace s21 {
-void Validator::Validation(std::list<Token>& tokens) {
+void Validator::Validation(std::list<Token> &tokens) {
   if (Validator::ValidForFirst(tokens.front())) {
     int count_open_parenthesis = 0;
     int count_close_parenthesis = 0;
     auto current = tokens.begin();
-    if (current->IsOpenParenthesis()) ++count_open_parenthesis;
+    if (current->IsOpenParenthesis())
+      ++count_open_parenthesis;
     auto previous = tokens.begin();
     ++current;
     while (current != tokens.end()) {
@@ -39,7 +39,7 @@ void Validator::Validation(std::list<Token>& tokens) {
   }
 }
 
-bool Validator::ValidForFirst(const Token& current) {
+bool Validator::ValidForFirst(const Token &current) {
   if (current.IsUnaryOperator() || current.IsFunction() || current.IsNumber() ||
       current.IsOpenParenthesis()) {
     return true;
@@ -49,40 +49,40 @@ bool Validator::ValidForFirst(const Token& current) {
   return false;
 }
 
-void Validator::ValidForNumber(const Token& previous) {
+void Validator::ValidForNumber(const Token &previous) {
   if (!(previous.IsBinaryOperator() || previous.IsUnaryOperator() ||
         previous.IsOpenParenthesis())) {
     throw std::logic_error("Incorrect position for number");
   }
 }
 
-void Validator::ValidForFunction(const Token& previous) {
+void Validator::ValidForFunction(const Token &previous) {
   if (!(previous.IsBinaryOperator() || previous.IsOpenParenthesis() ||
         previous.IsUnaryOperator())) {
     throw std::logic_error("Incorrect position for function");
   }
 }
 
-void Validator::ValidForOpenParenthesis(const Token& previous) {
+void Validator::ValidForOpenParenthesis(const Token &previous) {
   if (!(previous.IsFunction() || previous.IsBinaryOperator() ||
         previous.IsOpenParenthesis() || previous.IsUnaryOperator())) {
     throw std::logic_error("Inncorect position for open parenthesis");
   }
 }
 
-void Validator::ValidForCloseParenthesis(const Token& previous) {
+void Validator::ValidForCloseParenthesis(const Token &previous) {
   if (!(previous.IsNumber() || previous.IsCloseParenthesis())) {
     throw std::logic_error("Inncorect position for close parenthesis");
   }
 }
 
-void Validator::ValidForBinOperator(const Token& previous) {
+void Validator::ValidForBinOperator(const Token &previous) {
   if (!(previous.IsNumber() || previous.IsCloseParenthesis())) {
     throw std::logic_error("Incorrect position for binary operator");
   }
 }
 
-bool Validator::ValidForLast(const Token& current) {
+bool Validator::ValidForLast(const Token &current) {
   if (current.IsBinaryOperator() || current.IsOpenParenthesis() ||
       current.IsFunction() || current.IsUnaryOperator()) {
     throw std::logic_error("The last symbol is wrong");
@@ -90,11 +90,9 @@ bool Validator::ValidForLast(const Token& current) {
   return true;
 }
 
-bool Validator::AdditionalCheckForBrackets(const int& close, const int& open) {
+bool Validator::AdditionalCheckForBrackets(const int &close, const int &open) {
   if (close > open) {
     throw std::logic_error("Closing brackets must be exactly");
   }
   return true;
 }
-
-}  // namespace s21

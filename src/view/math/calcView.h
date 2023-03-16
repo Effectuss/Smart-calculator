@@ -3,7 +3,6 @@
 
 #include <qcustomplot.h>
 
-#include <QDebug>
 #include <QDialog>
 #include <QLabel>
 #include <QMainWindow>
@@ -20,7 +19,6 @@ class CalcView;
 }
 QT_END_NAMESPACE
 
-namespace s21 {
 class CalcView : public QMainWindow {
   Q_OBJECT
 
@@ -49,6 +47,5 @@ class CalcView : public QMainWindow {
   QString input_label_;
   double value_x_;
 };
-}  // namespace s21
 
 #endif  // __CALCVIEW_H__

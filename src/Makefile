@@ -60,7 +60,7 @@ lcov_report: $(GOBJECTS) $(OBJECTS_TEST)
 
 check: tests
 	@cppcheck $(CPPCHECKFLAG) */*.cc */*/*.cc *.cc  */*.h */*/*.h *.h
-	@-cp ../materials/linters/.clang-format .
+	@-cp ../linters/clang-format .
 	@clang-format -n */*.cc */*/*.cc *.cc  $(HEADERS) */*/*.ui
 	@make clean
 
@@ -74,7 +74,7 @@ clean:
 	@rm -rf */*.gcda */*/*.gcda *.gcda
 	@rm -rf main_coverage.info
 	@rm -rf build
-	@rm -rf .clang-format
+	@rm -rf clang-format
 	@rm -rf tests.out
 	@rm -rf lcov_report
 	@rm -rf smartCalc.tar

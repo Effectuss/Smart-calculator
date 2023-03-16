@@ -1,7 +1,5 @@
 #include "creditCalc.h"
 
-namespace s21 {
-
 void CreditCalc::CalculateCredit(DataForCredit &data_for_credit) {
   if (data_for_credit.type_credit == CreditCalc::TypeOfCredit::kAnnuity) {
     this->AnnuityCredit(
@@ -76,4 +74,3 @@ void CreditCalc::DifferentiatedBankMoney(DataForCredit &data_for_credit) {
       .at(static_cast<int>(data_for_credit.amount_month) - 1)
       .at(3) = 0.0;
 }
-}  // namespace s21

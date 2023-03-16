@@ -1,10 +1,7 @@
 #include "graphView.h"
 
-#include <QDebug>
-
 #include "ui_graphView.h"
 
-namespace s21 {
 GraphView::GraphView(QWidget *parent) : QWidget(parent), ui(new Ui::GraphView) {
   ui->setupUi(this);
   connect(ui->actionBuild, SIGNAL(clicked()), this, SLOT(OnActionBuild()));
@@ -84,5 +81,3 @@ void GraphView::OnActionClose() {
 void GraphView::OnActionClear() { this->SetDefaultSettings(); }
 
 GraphView::~GraphView() { delete ui; }
-
-}  // namespace s21

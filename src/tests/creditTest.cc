@@ -6,10 +6,9 @@
 
 typedef std::vector<std::array<double, 4>> test_type;
 
-void fill_data_for_credit(s21::CreditCalc::DataForCredit &data,
-                          double sum_credit, double amount_month,
-                          double interest_rate,
-                          s21::CreditCalc::TypeOfCredit type) {
+void fill_data_for_credit(CreditCalc::DataForCredit &data, double sum_credit,
+                          double amount_month, double interest_rate,
+                          CreditCalc::TypeOfCredit type) {
   data.sum_credit = sum_credit;
   data.amount_month = amount_month;
   data.interest_rate = interest_rate;
@@ -29,10 +28,10 @@ void compare_data(test_type &data_from_calcus, test_type &my_data) {
 }
 
 TEST(credit_test_annuity, test1) {
-  s21::Model model;
-  s21::CreditCalc::DataForCredit data;
+  Model model;
+  CreditCalc::DataForCredit data;
   fill_data_for_credit(data, 3'000'000.0, 24.0, 13.0,
-                       s21::CreditCalc::TypeOfCredit::kAnnuity);
+                       CreditCalc::TypeOfCredit::kAnnuity);
   model.GetCreditCalc().CalculateCredit(data);
   test_type from_calcus = {{142625.47, 110125.47, 32500.00, 2889874.53},
                            {142625.47, 111318.49, 31306.97, 2778556.04},
@@ -62,10 +61,10 @@ TEST(credit_test_annuity, test1) {
 }
 
 TEST(credit_test_differentiated, test2) {
-  s21::Model model;
-  s21::CreditCalc::DataForCredit data;
+  Model model;
+  CreditCalc::DataForCredit data;
   fill_data_for_credit(data, 3'000'000, 24.0, 13.0,
-                       s21::CreditCalc::TypeOfCredit::kDifferentiated);
+                       CreditCalc::TypeOfCredit::kDifferentiated);
   model.GetCreditCalc().CalculateCredit(data);
   test_type from_calcus = {{157500.00, 125000.00, 32500.00, 2875000.00},
                            {156145.83, 125000.00, 31145.83, 2750000.00},

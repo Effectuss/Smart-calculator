@@ -11,7 +11,7 @@
 namespace Ui {
 class GraphView;
 }
-namespace s21 {
+
 class GraphView : public QWidget {
   Q_OBJECT
 
@@ -45,6 +45,5 @@ class GraphView : public QWidget {
   double x_begin;
   double x_end;
 };
-}  // namespace s21
 
 #endif  // GRAPHVIEW_H

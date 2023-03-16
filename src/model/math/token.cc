@@ -1,9 +1,7 @@
 #include "token.h"
 
-namespace s21 {
-
-Token::Token(const TypeTokens& type, const std::string& token,
-             const short& priority)
+Token::Token(const TypeTokens &type, const std::string &token,
+             const short &priority)
     : priority_{priority} {
   type_and_token_.first = type;
   type_and_token_.second = token;
@@ -38,5 +36,3 @@ bool Token::IsBinaryOperator() const {
 bool Token::IsUnaryOperator() const {
   return type_and_token_.first == TypeTokens::kUnaryOperator;
 }
-
-}  // namespace s21

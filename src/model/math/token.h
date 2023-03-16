@@ -6,9 +6,8 @@
 #include <string>
 #include <vector>
 
-namespace s21 {
 class Token {
- public:
+public:
   enum class TypeTokens {
     kNumber = 1,
     kOpenParenthesis,
@@ -18,8 +17,8 @@ class Token {
     kFunction
   };
 
-  Token(const TypeTokens& type, const std::string& token,
-        const short& priority = -1);
+  Token(const TypeTokens &type, const std::string &token,
+        const short &priority = -1);
 
   short GetPriority() const;
   std::string GetTokenString() const;
@@ -32,10 +31,9 @@ class Token {
   bool IsBinaryOperator() const;
   bool IsUnaryOperator() const;
 
- private:
+private:
   std::pair<TypeTokens, std::string> type_and_token_;
   short priority_;
 };
-}  // namespace s21
 
-#endif  // __TOKEN_H__
+#endif // __TOKEN_H__

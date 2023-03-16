@@ -2,7 +2,6 @@
 
 #include "ui_creditView.h"
 
-namespace s21 {
 CreditView::CreditView(QWidget *parent)
     : QWidget(parent), ui(new Ui::CreditView) {
   ui->setupUi(this);
@@ -79,5 +78,3 @@ void CreditView::OnActionCloseClicked() {
 }
 
 void CreditView::OnActionClearClicked() { this->SetDefaultSettings(); }
-
-}  // namespace s21

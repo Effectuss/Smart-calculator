@@ -8,7 +8,6 @@
 namespace Ui {
 class CreditView;
 }
-namespace s21 {
 class CreditView : public QWidget {
   Q_OBJECT
 
@@ -35,6 +34,5 @@ class CreditView : public QWidget {
   Ui::CreditView *ui;
   Controller *controller_;
 };
-}  // namespace s21
 
 #endif  // CREDITVIEW_H

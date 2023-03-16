@@ -2,11 +2,8 @@
 
 #include "ui_calcView.h"
 
-namespace s21 {
 CalcView::CalcView(QWidget *parent)
-    : QMainWindow(parent),
-      ui(new Ui::CalcView),
-      graph_window(new GraphView()),
+    : QMainWindow(parent), ui(new Ui::CalcView), graph_window(new GraphView()),
       credit_calc(new CreditView()) {
   ui->setupUi(this);
 
@@ -166,5 +163,3 @@ void CalcView::OnActionCreditTriggered() {
 }
 
 CalcView::~CalcView() { delete ui; }
-
-}  // namespace s21

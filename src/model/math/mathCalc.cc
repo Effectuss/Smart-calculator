@@ -1,7 +1,5 @@
 #include "mathCalc.h"
 
-namespace s21 {
-
 inline const std::map<std::string, std::function<double(double)>>
     MathCalc::kFunctions_{
         {"sin", [](double val) -> double { return sin(val); }},
@@ -27,7 +25,7 @@ inline const std::map<std::string, std::function<double(double, double)>>
         {"A", [](double val1, double val2) -> double { return val2 + val1; }},
         {"C", [](double val1, double val2) -> double { return val2 - val1; }}};
 
-double MathCalc::ShuntingYard(std::string& str_from_label, const double& x) {
+double MathCalc::ShuntingYard(std::string &str_from_label, const double &x) {
   this->tokenizator_.ToTokens(str_from_label, x);
   this->validator_.Validation(this->tokenizator_.GetListToken());
   std::stack<double> stack_number;
@@ -76,8 +74,8 @@ double MathCalc::ShuntingYard(std::string& str_from_label, const double& x) {
   return stack_number.top();
 }
 
-void MathCalc::CountValue(std::stack<Token>& stack_operations,
-                          std::stack<double>& stack_number) {
+void MathCalc::CountValue(std::stack<Token> &stack_operations,
+                          std::stack<double> &stack_number) {
   double tmp = stack_number.top();
   stack_number.pop();
   if (stack_operations.top().GetType() == Token::TypeTokens::kFunction) {
@@ -90,5 +88,3 @@ void MathCalc::CountValue(std::stack<Token>& stack_operations,
   stack_number.push(tmp);
   stack_operations.pop();
 }
-
-}  // namespace s21

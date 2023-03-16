@@ -4,8 +4,6 @@
 #include "./credit/creditCalc.h"
 #include "./math/mathCalc.h"
 
-namespace s21 {
-
 class Model {
  public:
   Model() {}
@@ -15,7 +13,6 @@ class Model {
   double GetResultMathExpression(std::string& str_from_label, const double& x) {
     return this->math_calc_.ShuntingYard(str_from_label, x);
   }
-  // MathCalc& GetMathCalc() { return this->math_calc_; }
   CreditCalc& GetCreditCalc() { return this->credit_calc_; }
 
  private:
@@ -23,6 +20,5 @@ class Model {
   CreditCalc credit_calc_;
 };
 
-}  // namespace s21
 
 #endif  // __CALCMODEL_H__
