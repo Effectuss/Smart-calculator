@@ -139,3 +139,5 @@ Thumbs.db
 src/build/
 .vscode/
 build
+
+.idea
