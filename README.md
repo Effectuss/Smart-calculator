@@ -26,10 +26,13 @@ Calculator Features
 | Calculates the natural logarithm | log(x)   |
 | Calculates the decimal logarithm | log(x)   |
 
+![math screen cast](src/documentation/gifs/math_calc.gif)
 
 ## Graph
 
 With this application, you can draw graphs with a range of definitions from -1,000,000 to 1,000,000 and a range of values ​​from -1,000,000 to 1,000,000.
+
+![graph screen cast](src/documentation/gifs/graph.gif)
 
 ## Credit calc
 
@@ -41,6 +44,7 @@ The loan calculator allows you to calculate a loan for different types of monthl
 
 The interface of the calculator is intuitive and even an inexperienced user will be able to correctly calculate his monthly payment and the final overpayment, thereby choosing the best option for himself.
 
+![credit screen cast](src/documentation/gifs/credit.gif)
 
 ## Project build instructions
 
